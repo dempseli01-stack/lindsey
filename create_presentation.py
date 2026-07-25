@@ -16,28 +16,41 @@ from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.util import Inches, Pt
 
-CHARCOAL = RGBColor(0x14, 0x16, 0x18)
-SLATE = RGBColor(0x2A, 0x2F, 0x34)
-PAPER = RGBColor(0xF4, 0xF5, 0xF2)
-INK = RGBColor(0x1A, 0x1C, 0x1E)
-MUTED = RGBColor(0x5E, 0x64, 0x6B)
-CITRUS = RGBColor(0xD6, 0xF2, 0x6A)
+# Cursor brand tokens (cursor.com/brand + marketing system)
+PARCHMENT = RGBColor(0xF7, 0xF7, 0xF4)  # canvas
+BONE = RGBColor(0xF2, 0xF1, 0xED)
+LINEN = RGBColor(0xE6, 0xE5, 0xE0)
+INK = RGBColor(0x26, 0x25, 0x1E)  # warm near-black
+MUTED = RGBColor(0x80, 0x7D, 0x72)
+EMBER = RGBColor(0xF5, 0x4E, 0x00)  # Cursor orange — accent only
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
-SOFT = RGBColor(0xE8, 0xEA, 0xE4)
+SOFT = RGBColor(0xEF, 0xEE, 0xE8)
+
+# Aliases so existing slide builders keep working
+CHARCOAL = INK
+SLATE = RGBColor(0x3A, 0x38, 0x32)
+PAPER = PARCHMENT
+CITRUS = EMBER
 
 SLIDE_W = Inches(13.333)
 SLIDE_H = Inches(7.5)
-OUTPUT = Path(__file__).resolve().parent / "Lindsey_Presentation.pptx"
+ROOT = Path(__file__).resolve().parent
+OUTPUT = ROOT / "Lindsey_Presentation.pptx"
+LOGO_DARK = ROOT / "assets" / "cursor-lockup-dark.png"
+LOGO_LIGHT = ROOT / "assets" / "cursor-lockup-light.png"
+CUBE_DARK = ROOT / "assets" / "cursor-cube-dark.png"
+
+FONT = "Arial"  # closest widely available stand-in for CursorGothic
 
 
-def set_run(run, *, size, bold=False, color=INK, font="Calibri"):
+def set_run(run, *, size, bold=False, color=INK, font=FONT):
     run.font.name = font
     run.font.size = Pt(size)
     run.font.bold = bold
     run.font.color.rgb = color
 
 
-def add_textbox(slide, left, top, width, height, text, *, size=18, bold=False, color=INK, font="Calibri", align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.TOP):
+def add_textbox(slide, left, top, width, height, text, *, size=18, bold=False, color=INK, font=FONT, align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.TOP):
     box = slide.shapes.add_textbox(left, top, width, height)
     tf = box.text_frame
     tf.word_wrap = True
@@ -79,8 +92,9 @@ def add_rect(slide, left, top, width, height, color):
     return shape
 
 
-def add_accent(slide, left, top, width=Inches(1.05), height=Inches(0.07)):
-    return add_rect(slide, left, top, width, height, CITRUS)
+def add_accent(slide, left, top, width=Inches(1.05), height=Inches(0.06)):
+    """Thin ember accent bar — Cursor brand voltage, used sparingly."""
+    return add_rect(slide, left, top, width, height, EMBER)
 
 
 def blank(prs):
@@ -91,33 +105,42 @@ def notes(slide, text):
     slide.notes_slide.notes_text_frame.text = text.strip()
 
 
+def add_logo(slide, *, light=False, left=Inches(0.75), top=Inches(0.28), width=Inches(1.55)):
+    path = LOGO_LIGHT if light else LOGO_DARK
+    if path.exists():
+        slide.shapes.add_picture(str(path), left, top, width=width)
+
+
 def header(slide, title):
-    add_rect(slide, 0, 0, SLIDE_W, SLIDE_H, PAPER)
-    add_rect(slide, 0, 0, SLIDE_W, Inches(1.15), CHARCOAL)
-    add_textbox(slide, Inches(0.75), Inches(0.3), Inches(11.8), Inches(0.55), title, size=23, bold=True, color=WHITE, font="Georgia")
+    add_rect(slide, 0, 0, SLIDE_W, SLIDE_H, PARCHMENT)
+    add_rect(slide, 0, 0, SLIDE_W, Inches(1.15), INK)
+    add_logo(slide, light=True, left=Inches(0.7), top=Inches(0.32), width=Inches(1.35))
+    add_textbox(slide, Inches(2.3), Inches(0.32), Inches(10.2), Inches(0.55), title, size=22, bold=False, color=WHITE, font=FONT)
+    add_rect(slide, 0, Inches(1.15), SLIDE_W, Inches(0.06), EMBER)
 
 
 def title_slide(prs, note):
     s = blank(prs)
-    add_rect(s, 0, 0, SLIDE_W, SLIDE_H, CHARCOAL)
-    add_rect(s, 0, Inches(5.55), SLIDE_W, Inches(1.95), SLATE)
-    add_accent(s, Inches(0.8), Inches(1.7), width=Inches(1.5))
-    add_textbox(s, Inches(0.8), Inches(1.95), Inches(11.6), Inches(0.9), "Up-Level the Machine", size=40, bold=True, color=WHITE, font="Georgia")
-    add_textbox(s, Inches(0.8), Inches(2.95), Inches(11.6), Inches(0.45), "Diagnose  →  Protect  →  Experiment  →  Execute", size=22, color=CITRUS)
-    add_textbox(s, Inches(0.8), Inches(3.55), Inches(11.6), Inches(0.45), "Player-coach plan for a high-performing EMEA SDR org", size=17, color=SOFT)
-    add_textbox(s, Inches(0.8), Inches(4.2), Inches(11.6), Inches(0.4), "Built from Cursor competitor differentiation + enterprise prep history", size=13, color=MUTED)
-    add_textbox(s, Inches(0.8), Inches(5.9), Inches(11.6), Inches(0.4), "Lindsey Dempsey  ·  EMEA SDR Leader Candidate", size=18, bold=True, color=WHITE, font="Georgia")
-    add_textbox(s, Inches(0.8), Inches(6.4), Inches(11.6), Inches(0.35), "Cursor wins on workflow · context · execution", size=14, color=SOFT)
+    add_rect(s, 0, 0, SLIDE_W, SLIDE_H, PARCHMENT)
+    add_logo(s, light=False, left=Inches(0.85), top=Inches(0.55), width=Inches(2.1))
+    add_accent(s, Inches(0.85), Inches(2.05), width=Inches(1.4))
+    add_textbox(s, Inches(0.85), Inches(2.3), Inches(11.5), Inches(0.9), "Up-Level the Machine", size=40, bold=False, color=INK, font=FONT)
+    add_textbox(s, Inches(0.85), Inches(3.3), Inches(11.5), Inches(0.45), "Diagnose  →  Protect  →  Experiment  →  Execute", size=20, color=EMBER, font=FONT)
+    add_textbox(s, Inches(0.85), Inches(3.95), Inches(11.5), Inches(0.45), "Player-coach plan for a high-performing EMEA SDR org", size=17, color=MUTED, font=FONT)
+    add_rect(s, 0, Inches(5.85), SLIDE_W, Inches(1.65), INK)
+    add_textbox(s, Inches(0.85), Inches(6.15), Inches(11.5), Inches(0.4), "Lindsey Dempsey  ·  EMEA SDR Leader Candidate", size=18, bold=False, color=WHITE, font=FONT)
+    add_textbox(s, Inches(0.85), Inches(6.6), Inches(11.5), Inches(0.35), "Cursor wins on workflow · context · execution", size=14, color=SOFT, font=FONT)
     notes(s, note)
     return s
 
 
 def section_slide(prs, part, title, note):
     s = blank(prs)
-    add_rect(s, 0, 0, SLIDE_W, SLIDE_H, CHARCOAL)
-    add_accent(s, Inches(0.8), Inches(2.45), width=Inches(1.35))
-    add_textbox(s, Inches(0.8), Inches(2.65), Inches(11), Inches(0.35), part.upper(), size=13, bold=True, color=CITRUS)
-    add_textbox(s, Inches(0.8), Inches(3.15), Inches(11.6), Inches(1.2), title, size=30, bold=True, color=WHITE, font="Georgia")
+    add_rect(s, 0, 0, SLIDE_W, SLIDE_H, PARCHMENT)
+    add_logo(s, light=False, left=Inches(0.85), top=Inches(0.55), width=Inches(1.8))
+    add_accent(s, Inches(0.85), Inches(2.55), width=Inches(1.35))
+    add_textbox(s, Inches(0.85), Inches(2.8), Inches(11), Inches(0.35), part.upper(), size=13, bold=True, color=EMBER, font=FONT)
+    add_textbox(s, Inches(0.85), Inches(3.3), Inches(11.6), Inches(1.2), title, size=30, bold=False, color=INK, font=FONT)
     notes(s, note)
     return s
 
@@ -135,12 +158,12 @@ def two_col(prs, title, left_title, left_items, right_title, right_items, note, 
     header(s, title)
     add_rect(s, Inches(0.6), Inches(1.4), Inches(5.9), Inches(5.25), WHITE)
     add_accent(s, Inches(0.9), Inches(1.65), width=Inches(0.8))
-    add_textbox(s, Inches(0.9), Inches(1.9), Inches(5.3), Inches(0.35), left_title, size=16, bold=True, color=CHARCOAL, font="Georgia")
+    add_textbox(s, Inches(0.9), Inches(1.9), Inches(5.3), Inches(0.35), left_title, size=16, bold=True, color=CHARCOAL, font=FONT)
     add_bullets(s, Inches(0.9), Inches(2.4), Inches(5.3), Inches(3.9), left_items, size=size, space_after=7)
 
     add_rect(s, Inches(6.75), Inches(1.4), Inches(5.9), Inches(5.25), WHITE)
     add_accent(s, Inches(7.05), Inches(1.65), width=Inches(0.8))
-    add_textbox(s, Inches(7.05), Inches(1.9), Inches(5.3), Inches(0.35), right_title, size=16, bold=True, color=CHARCOAL, font="Georgia")
+    add_textbox(s, Inches(7.05), Inches(1.9), Inches(5.3), Inches(0.35), right_title, size=16, bold=True, color=CHARCOAL, font=FONT)
     add_bullets(s, Inches(7.05), Inches(2.4), Inches(5.3), Inches(3.9), right_items, size=size, space_after=7)
     notes(s, note)
     return s
@@ -153,11 +176,11 @@ def market_slide(prs, note):
 
     # Philosophies strip
     add_rect(s, Inches(0.6), Inches(1.35), Inches(5.9), Inches(1.55), WHITE)
-    add_textbox(s, Inches(0.8), Inches(1.45), Inches(5.5), Inches(0.3), "AI-native IDE", size=14, bold=True, color=CHARCOAL, font="Georgia")
+    add_textbox(s, Inches(0.8), Inches(1.45), Inches(5.5), Inches(0.3), "AI-native IDE", size=14, bold=True, color=CHARCOAL, font=FONT)
     add_textbox(s, Inches(0.8), Inches(1.8), Inches(5.5), Inches(0.9), "Cursor · Windsurf\nRebuild the editor around agents — not bolt AI onto an existing one.", size=13, color=MUTED)
 
     add_rect(s, Inches(6.75), Inches(1.35), Inches(5.9), Inches(1.55), WHITE)
-    add_textbox(s, Inches(6.95), Inches(1.45), Inches(5.5), Inches(0.3), "IDE plugin / extension", size=14, bold=True, color=CHARCOAL, font="Georgia")
+    add_textbox(s, Inches(6.95), Inches(1.45), Inches(5.5), Inches(0.3), "IDE plugin / extension", size=14, bold=True, color=CHARCOAL, font=FONT)
     add_textbox(s, Inches(6.95), Inches(1.8), Inches(5.5), Inches(0.9), "GitHub Copilot · JetBrains AI · Amazon Q\nKeep the current toolchain; add AI as a layer.", size=13, color=MUTED)
 
     # Two layers
@@ -215,7 +238,7 @@ def positioning_slide(prs, note):
         x = Inches(0.6) + i * Inches(3.1)
         add_rect(s, x, Inches(2.4), Inches(2.95), Inches(1.1), WHITE)
         add_accent(s, x + Inches(0.18), Inches(2.55), width=Inches(0.6))
-        add_textbox(s, x + Inches(0.18), Inches(2.75), Inches(2.55), Inches(0.28), label, size=14, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, x + Inches(0.18), Inches(2.75), Inches(2.55), Inches(0.28), label, size=14, bold=True, color=CHARCOAL, font=FONT)
         add_textbox(s, x + Inches(0.18), Inches(3.1), Inches(2.55), Inches(0.25), sub, size=12, color=MUTED)
 
     # Enterprise buckets
@@ -227,7 +250,7 @@ def positioning_slide(prs, note):
     for i, (t, b) in enumerate(buckets):
         x = Inches(0.6) + i * Inches(4.15)
         add_rect(s, x, Inches(3.7), Inches(4.0), Inches(1.55), WHITE)
-        add_textbox(s, x + Inches(0.2), Inches(3.85), Inches(3.55), Inches(0.3), t, size=14, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, x + Inches(0.2), Inches(3.85), Inches(3.55), Inches(0.3), t, size=14, bold=True, color=CHARCOAL, font=FONT)
         add_textbox(s, x + Inches(0.2), Inches(4.25), Inches(3.55), Inches(0.8), b, size=12, color=MUTED)
 
     add_textbox(
@@ -257,8 +280,8 @@ def differentiators_slide(prs, note):
     for (left, top), (num, title, body) in zip(positions, cards):
         add_rect(s, left, top, Inches(5.9), Inches(2.35), WHITE)
         add_accent(s, left + Inches(0.25), top + Inches(0.25), width=Inches(0.7))
-        add_textbox(s, left + Inches(0.25), top + Inches(0.45), Inches(0.85), Inches(0.3), num, size=15, bold=True, color=CHARCOAL, font="Georgia")
-        add_textbox(s, left + Inches(1.1), top + Inches(0.45), Inches(4.4), Inches(0.3), title, size=15, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, left + Inches(0.25), top + Inches(0.45), Inches(0.85), Inches(0.3), num, size=15, bold=True, color=CHARCOAL, font=FONT)
+        add_textbox(s, left + Inches(1.1), top + Inches(0.45), Inches(4.4), Inches(0.3), title, size=15, bold=True, color=CHARCOAL, font=FONT)
         add_textbox(s, left + Inches(0.25), top + Inches(1.0), Inches(5.35), Inches(1.05), body, size=13, color=MUTED)
     notes(s, note)
     return s
@@ -278,7 +301,7 @@ def gains_slide(prs, note):
 
     add_rect(s, Inches(7.3), Inches(1.45), Inches(5.3), Inches(4.5), WHITE)
     add_accent(s, Inches(7.55), Inches(1.7), width=Inches(0.8))
-    add_textbox(s, Inches(7.55), Inches(1.95), Inches(4.8), Inches(0.35), "Software factory insight", size=15, bold=True, color=CHARCOAL, font="Georgia")
+    add_textbox(s, Inches(7.55), Inches(1.95), Inches(4.8), Inches(0.35), "Software factory insight", size=15, bold=True, color=CHARCOAL, font=FONT)
     add_textbox(
         s,
         Inches(7.55),
@@ -346,7 +369,7 @@ def competitive_battlecard(prs, note):
     for left, title, tcolor, bar, items in cols:
         add_rect(s, left, Inches(2.2), Inches(3.0), Inches(4.4), WHITE)
         add_rect(s, left, Inches(2.2), Inches(3.0), Inches(0.48), bar)
-        add_textbox(s, left + Inches(0.12), Inches(2.28), Inches(2.75), Inches(0.35), title, size=12, bold=True, color=tcolor if bar != WHITE else CHARCOAL, font="Georgia")
+        add_textbox(s, left + Inches(0.12), Inches(2.28), Inches(2.75), Inches(0.35), title, size=12, bold=True, color=tcolor if bar != WHITE else CHARCOAL, font=FONT)
         add_bullets(s, left + Inches(0.12), Inches(2.9), Inches(2.75), Inches(3.4), items, size=11, space_after=5)
     notes(s, note)
     return s
@@ -357,7 +380,7 @@ def numbered_slide(prs, title, items, note):
     header(s, title)
     top = Inches(1.4)
     for num, heading, body in items:
-        add_textbox(s, Inches(0.8), top, Inches(0.65), Inches(0.32), num, size=16, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, Inches(0.8), top, Inches(0.65), Inches(0.32), num, size=16, bold=True, color=CHARCOAL, font=FONT)
         add_textbox(s, Inches(1.5), top, Inches(10.9), Inches(0.3), heading, size=15, bold=True, color=CHARCOAL)
         add_textbox(s, Inches(1.5), top + Inches(0.32), Inches(10.9), Inches(0.5), body, size=13, color=MUTED)
         top += Inches(1.15)
@@ -374,7 +397,7 @@ def calendar_slide(prs, note):
     add_rect(s, Inches(0.55), Inches(1.4), Inches(6.0), Inches(5.3), WHITE)
     add_rect(s, Inches(0.55), Inches(1.4), Inches(6.0), Inches(0.7), CHARCOAL)
     add_textbox(s, Inches(0.75), Inches(1.5), Inches(5.5), Inches(0.25), "DAYS 1–15", size=12, bold=True, color=CITRUS)
-    add_textbox(s, Inches(0.75), Inches(1.78), Inches(5.5), Inches(0.25), "Inspection · Data · Training design", size=16, bold=True, color=WHITE, font="Georgia")
+    add_textbox(s, Inches(0.75), Inches(1.78), Inches(5.5), Inches(0.25), "Inspection · Data · Training design", size=16, bold=True, color=WHITE, font=FONT)
     add_bullets(s, Inches(0.8), Inches(2.35), Inches(5.4), Inches(4.0), [
         "Inspect the machine — no big changes yet",
         "Pull hard data: qualified vs unqualified meetings",
@@ -389,7 +412,7 @@ def calendar_slide(prs, note):
     add_rect(s, Inches(6.75), Inches(1.4), Inches(6.0), Inches(5.3), WHITE)
     add_rect(s, Inches(6.75), Inches(1.4), Inches(6.0), Inches(0.7), SLATE)
     add_textbox(s, Inches(6.95), Inches(1.5), Inches(5.5), Inches(0.25), "DAYS 16–30", size=12, bold=True, color=CITRUS)
-    add_textbox(s, Inches(6.95), Inches(1.78), Inches(5.5), Inches(0.25), "Train · Activity · Daily cadence", size=16, bold=True, color=WHITE, font="Georgia")
+    add_textbox(s, Inches(6.95), Inches(1.78), Inches(5.5), Inches(0.25), "Train · Activity · Daily cadence", size=16, bold=True, color=WHITE, font=FONT)
     add_bullets(s, Inches(7.0), Inches(2.35), Inches(5.4), Inches(4.0), [
         "Run the training (openers, objections, discovery)",
         "Increase activity metrics once diagnosis is clear",
@@ -438,7 +461,7 @@ def diagnosis_slide(prs, note):
     for left, title, items in cols:
         add_rect(s, left, Inches(1.4), Inches(3.95), Inches(5.25), WHITE)
         add_accent(s, left + Inches(0.2), Inches(1.65), width=Inches(0.75))
-        add_textbox(s, left + Inches(0.2), Inches(1.9), Inches(3.5), Inches(0.4), title, size=15, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, left + Inches(0.2), Inches(1.9), Inches(3.5), Inches(0.4), title, size=15, bold=True, color=CHARCOAL, font=FONT)
         add_bullets(s, left + Inches(0.2), Inches(2.45), Inches(3.5), Inches(3.9), items, size=13, space_after=7)
     notes(s, note)
     return s
