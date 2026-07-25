@@ -1,21 +1,24 @@
 # Lindsey Dempsey — EMEA SDR Leader Challenge deck
 
-21-slide widescreen PowerPoint rebuilt from Lindsey’s full **Cursor competitor differentiation** prep history plus the official challenge positioning and verbatim talk tracks.
+Full recreate from Lindsey’s past **Cursor competitor differentiation** prep history + official challenge scripts.
 
 ## Files
 
-- `Lindsey_Presentation.pptx` — finished deck (Speaker Notes = verbatim scripts)
+- `Lindsey_Presentation.pptx` — 21-slide deck (Speaker Notes = verbatim scripts)
 - `create_presentation.py` — regenerates the deck
-- `history/cursor_competitor_differentiation_history.md` — condensed source frameworks used for competitive slides
+- `history/cursor_competitor_differentiation_history.md` — full condensed source history
 
-## What’s baked in from the history
+## History baked into slides
 
-- Competitive shapes: Cursor vs Copilot vs Claude Code vs Windsurf vs Codex vs shadow AI
-- Win formula: **workflow · context · execution**
-- Four differentiators (lead with one wedge)
-- Enterprise 3 buckets: productivity / governance / privacy & security
-- Customer proof pointers: Coinbase, Stripe, PayPal
-- Challenge operating frame: diagnose → protect → experiment → execute
+- AI-native IDE vs plugin philosophy map
+- Two-layer race (harness + model)
+- Competitive shapes: Copilot, Claude Code, Windsurf, Codex, shadow AI
+- Workflow · context · execution + harness definition
+- Enterprise 3 buckets (productivity / governance / privacy)
+- Four differentiators + Bugbot / review-bottleneck story
+- Software factory maturity curve
+- Customer proof: Coinbase · Stripe · PayPal
+- Verbatim talk tracks in Notes on every slide
 
 ## Regenerate
 
@@ -23,10 +26,3 @@
 pip install python-pptx
 python3 create_presentation.py
 ```
-
-## Memorize first
-
-1. Slide 2 thesis  
-2. Slides 9–10 positioning + 4 differentiators  
-3. Slide 17 live pitch  
-4. Slide 21 close  
