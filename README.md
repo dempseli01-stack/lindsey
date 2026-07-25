@@ -1,24 +1,27 @@
 # Lindsey Dempsey — EMEA SDR Leader Challenge deck
 
-Full recreate from Lindsey’s past **Cursor competitor differentiation** prep history + official challenge scripts.
+Challenge deck with official Cursor brand styling + verbatim speaker notes.
 
 ## Files
 
-- `Lindsey_Presentation.pptx` — 21-slide deck (Speaker Notes = verbatim scripts)
+- `Lindsey_Presentation.pptx` — deliverable deck (Speaker Notes = talk tracks)
 - `create_presentation.py` — regenerates the deck
-- `history/cursor_competitor_differentiation_history.md` — full condensed source history
+- `history/` — clarifications + competitive frames (Copilot + Claude Code only)
 
-## History baked into slides
+## Competitive framing (challenge-only)
 
-- AI-native IDE vs plugin philosophy map
-- Two-layer race (harness + model)
-- Competitive shapes: Copilot, Claude Code, Windsurf, Codex, shadow AI
-- Workflow · context · execution + harness definition
-- Enterprise 3 buckets (productivity / governance / privacy)
-- Four differentiators + Bugbot / review-bottleneck story
-- Software factory maturity curve
+Only two competitor frames are trained / presented:
+
+- **vs GitHub Copilot** — snippet help → task completion; local → codebase context; point solution → integrated experience
+- **vs Claude Code** — don’t trash-talk; apply intelligence better (neutrality, SDLC integration, large codebases, time to value, complete environment)
+
+## Also in the deck
+
+- Part 1: diagnose → 15/30 calendar → protect → gains → experiments → Growth/Sales loops
+- Part 2: AI-era SDR · hiring · Tell→Show→Observe coaching
+- Part 3: live pitch (whiteboard craft) · personas · attention · why we win
+- Workflow · context · execution + four differentiators
 - Customer proof: Coinbase · Stripe · PayPal
-- Verbatim talk tracks in Notes on every slide
 
 ## Regenerate
 

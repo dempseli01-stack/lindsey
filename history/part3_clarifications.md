@@ -41,9 +41,9 @@ Key craft moves pulled into Part 3 slides + speaker notes:
 - Maturity curve: Assisted → Agentic → Cloud/background → Governed factory
 - Meet them where they are on the curve — don’t force the end state
 
-### Competitive already in
-- Copilot + Codex + Claude Code pockets are common
-- Don’t trash-talk — reframe from snippet help → task completion → factory
+### Competitive already in (challenge-only frames)
+- Copilot and Claude Code are the only named competitive frames
+- Don’t trash-talk — use the challenge themes (snippet→task; apply intelligence better)
 - Token efficiency / outcomes per dollar (finance pressure is real)
 - Model neutrality + Composer price-performance
 - Enterprise backplane for regulated buyers (Privacy Mode, SSO/SCIM/audit)
@@ -65,10 +65,10 @@ Key craft moves pulled into Part 3 slides + speaker notes:
 |---|---|---|
 | Hands-on developer | Peer energy, real-repo context, daily workflow, earn a try | ROI theater, feature laundry lists |
 | VP of Engineering | Standardization, shipping speed, free KTLO → moonshots | Feature dumps, slide-ware before diagnosis |
-| Security / Platform | Governed adoption, kill shadow AI, control plane | Hype; go deep only after earning trust |
+| Security / Platform | Governed adoption, control plane, reduce ungoverned AI risk | Hype; go deep only after earning trust |
 
 ### Why we win (own read)
 Cursor wins because the market moved from “help me write code” to “help my org ship software with agents without losing control.” AI creates speed, then moves the bottleneck to review and production. Cursor wins as the governed software factory — workflow, context, model neutrality, SDLC execution.
 
 **Skeptical eng leader (1–2 sentences):**  
-We don’t win by claiming the permanently smarter model. We win by applying intelligence better across real engineering workflows — with the control plane to standardize it without shadow AI or wasted tokens.
+We don’t win by claiming the permanently smarter model. We win by applying intelligence better across real engineering workflows — with the control plane to standardize it without ungoverned AI sprawl or wasted tokens.

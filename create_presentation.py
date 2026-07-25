@@ -170,49 +170,64 @@ def two_col(prs, title, left_title, left_items, right_title, right_items, note, 
 
 
 def market_slide(prs, note):
-    """History: two product philosophies + two-layer race + competitive shapes."""
+    """Challenge-only competitive frames: GitHub Copilot + Claude Code."""
     s = blank(prs)
-    header(s, "Competitor differentiation — market map")
+    header(s, "Competitive framing — Copilot & Claude Code only")
 
-    # Philosophies strip
-    add_rect(s, Inches(0.6), Inches(1.35), Inches(5.9), Inches(1.55), WHITE)
-    add_textbox(s, Inches(0.8), Inches(1.45), Inches(5.5), Inches(0.3), "AI-native IDE", size=14, bold=True, color=CHARCOAL, font=FONT)
-    add_textbox(s, Inches(0.8), Inches(1.8), Inches(5.5), Inches(0.9), "Cursor · Windsurf\nRebuild the editor around agents — not bolt AI onto an existing one.", size=13, color=MUTED)
-
-    add_rect(s, Inches(6.75), Inches(1.35), Inches(5.9), Inches(1.55), WHITE)
-    add_textbox(s, Inches(6.95), Inches(1.45), Inches(5.5), Inches(0.3), "IDE plugin / extension", size=14, bold=True, color=CHARCOAL, font=FONT)
-    add_textbox(s, Inches(6.95), Inches(1.8), Inches(5.5), Inches(0.9), "GitHub Copilot · JetBrains AI · Amazon Q\nKeep the current toolchain; add AI as a layer.", size=13, color=MUTED)
-
-    # Two layers
-    add_rect(s, Inches(0.6), Inches(3.1), Inches(5.9), Inches(2.35), WHITE)
-    add_rect(s, Inches(0.6), Inches(3.1), Inches(5.9), Inches(0.42), CHARCOAL)
-    add_textbox(s, Inches(0.8), Inches(3.15), Inches(5.5), Inches(0.35), "Layer 1 — Harness / product", size=13, bold=True, color=CITRUS)
-    add_bullets(s, Inches(0.8), Inches(3.7), Inches(5.5), Inches(1.55), [
-        "Plans, tools, repo navigation, workflow fit",
-        "What buyers feel in first conversations",
-        "Cursor’s established commercial strength",
-    ], size=13, space_after=5)
-
-    add_rect(s, Inches(6.75), Inches(3.1), Inches(5.9), Inches(2.35), WHITE)
-    add_rect(s, Inches(6.75), Inches(3.1), Inches(5.9), Inches(0.42), SLATE)
-    add_textbox(s, Inches(6.95), Inches(3.15), Inches(5.5), Inches(0.35), "Layer 2 — Model", size=13, bold=True, color=WHITE)
-    add_bullets(s, Inches(6.95), Inches(3.7), Inches(5.5), Inches(1.55), [
-        "Reasoning + long-horizon coding quality",
-        "Composer = Cursor coding-specialist path",
-        "Labs can be suppliers and competitors",
-    ], size=13, space_after=5)
-
-    add_rect(s, Inches(0.6), Inches(5.65), Inches(12.05), Inches(1.15), CHARCOAL)
+    add_rect(s, Inches(0.6), Inches(1.3), Inches(12.05), Inches(0.75), CHARCOAL)
     add_textbox(
         s,
         Inches(0.8),
-        Inches(5.8),
+        Inches(1.4),
         Inches(11.6),
-        Inches(0.85),
-        "Shapes:  Cursor = platform  ·  Copilot = plugin / GitHub ecosystem  ·  Claude Code = terminal agent  ·  Windsurf = Cascade IDE challenger  ·  Codex = OpenAI async agents  ·  Often the real rival = ungoverned shadow AI",
+        Inches(0.55),
+        "We don’t argue anyone is weak. Edge = apply intelligence more effectively across real engineering workflows — not exclusive smarter-model access.",
         size=13,
         color=SOFT,
     )
+
+    # vs Copilot
+    add_rect(s, Inches(0.6), Inches(2.25), Inches(5.9), Inches(4.55), WHITE)
+    add_accent(s, Inches(0.85), Inches(2.5), width=Inches(0.9))
+    add_textbox(s, Inches(0.85), Inches(2.75), Inches(5.4), Inches(0.35), "Cursor vs GitHub Copilot", size=16, bold=True, color=CHARCOAL, font=FONT)
+    add_textbox(
+        s,
+        Inches(0.85),
+        Inches(3.2),
+        Inches(5.4),
+        Inches(0.7),
+        "Copilot is often understood as helping developers write code faster. Cursor is an AI-native environment for completing broader tasks across a codebase.",
+        size=12,
+        color=MUTED,
+    )
+    add_bullets(s, Inches(0.85), Inches(4.05), Inches(5.4), Inches(2.5), [
+        "Snippet help → task completion",
+        "Local suggestions → broader codebase context",
+        "Isolated assistance → workflow support",
+        "Point solution → more integrated development experience",
+    ], size=14, space_after=8)
+
+    # vs Claude Code
+    add_rect(s, Inches(6.75), Inches(2.25), Inches(5.9), Inches(4.55), WHITE)
+    add_accent(s, Inches(7.0), Inches(2.5), width=Inches(0.9))
+    add_textbox(s, Inches(7.0), Inches(2.75), Inches(5.4), Inches(0.35), "Cursor vs Claude Code", size=16, bold=True, color=CHARCOAL, font=FONT)
+    add_textbox(
+        s,
+        Inches(7.0),
+        Inches(3.2),
+        Inches(5.4),
+        Inches(0.7),
+        "Claude Code comes up most in recent conversations. Don’t trash-talk. Our edge usually isn’t exclusive better intelligence.",
+        size=12,
+        color=MUTED,
+    )
+    add_bullets(s, Inches(7.0), Inches(4.05), Inches(5.4), Inches(2.5), [
+        "Model neutrality vs single-provider dependence",
+        "Stronger SDLC integration (e.g. Bugbot)",
+        "Better support for large, complex codebases",
+        "Faster time to value across a broader team",
+        "More complete planning → writing → reviewing → iterating",
+    ], size=13, space_after=6)
     notes(s, note)
     return s
 
@@ -245,7 +260,7 @@ def positioning_slide(prs, note):
     buckets = [
         ("Productivity", "Multi-file agents, codebase context, task completion — not just autocomplete"),
         ("Governance", "SSO · SCIM · RBAC · audit logs · admin controls over models / repos / MCP"),
-        ("Privacy & security", "Privacy Mode / ZDR · SOC 2 Type II · CMEK · reduce shadow AI risk"),
+        ("Privacy & security", "Privacy Mode / ZDR · SOC 2 Type II · CMEK · reduce ungoverned AI risk"),
     ]
     for i, (t, b) in enumerate(buckets):
         x = Inches(0.6) + i * Inches(4.15)
@@ -271,7 +286,7 @@ def differentiators_slide(prs, note):
     s = blank(prs)
     header(s, "Four differentiators — lead with one based on buyer pain")
     cards = [
-        ("01", "Model neutrality", "Best model changes. No single-vendor lock-in. Labs are suppliers and competitors — optionality is strategic."),
+        ("01", "Model neutrality", "Best model changes. No single-provider dependence — optionality as models and economics shift."),
         ("02", "Large codebase / harness", "Not just wrapping a model. Better finding + using context in messy enterprise repos. Buyers feel this day one."),
         ("03", "Faster time to value", "Strong out of the box. Standardize without every developer inventing a custom setup. Adoption + consistency."),
         ("04", "Platform across the SDLC", "Bugbot, Agent Review, Automations. Clear the review bottleneck AI creates. Better execution, not just answers."),
@@ -295,7 +310,7 @@ def gains_slide(prs, note):
     add_bullets(s, Inches(0.8), Inches(1.45), Inches(6.3), Inches(3.8), [
         "Conversation quality — relevance speed + correct wedge",
         "Qualification bar — fewer junk meetings, higher AE acceptance",
-        "Competitive fluency — Copilot / Claude Code / Windsurf frames",
+        "Competitive fluency — Copilot + Claude Code frames only",
         "Earlier multi-threading — Platform + Security on enterprise accounts",
     ], size=16, space_after=12)
 
@@ -312,65 +327,6 @@ def gains_slide(prs, note):
         size=13,
         color=MUTED,
     )
-    notes(s, note)
-    return s
-
-
-def competitive_battlecard(prs, note):
-    s = blank(prs)
-    header(s, "Why we win — competition differentiation battlecard")
-
-    add_rect(s, Inches(0.5), Inches(1.3), Inches(12.25), Inches(0.7), CHARCOAL)
-    add_textbox(
-        s,
-        Inches(0.7),
-        Inches(1.4),
-        Inches(11.8),
-        Inches(0.5),
-        "Not exclusive smarter intelligence forever — apply intelligence better: workflow + codebase context + SDLC integration + model neutrality.",
-        size=12,
-        color=SOFT,
-    )
-
-    cols = [
-        (Inches(0.5), "Cursor", CITRUS, CHARCOAL, [
-            "AI-native IDE + enterprise platform",
-            "Full-repo context + agent-first",
-            "IDE · CLI · Automations · Cloud Agents",
-            "Multi-model + Composer path",
-            "Bugbot clears PR bottleneck",
-            "Governance: SSO / SCIM / audit",
-        ]),
-        (Inches(3.65), "vs Copilot", WHITE, SLATE, [
-            "Biggest by market share",
-            "Plugin in existing IDEs",
-            "Wins: GitHub ecosystem + friction",
-            "Often local / snippet help",
-            "Our move: task completion",
-            "Our move: codebase workflow",
-        ]),
-        (Inches(6.8), "vs Claude Code", WHITE, SLATE, [
-            "Strong — don’t trash-talk",
-            "Terminal-first agent shape",
-            "Not a model-war pitch",
-            "Our edge: neutrality",
-            "Our edge: SDLC integration",
-            "Our edge: team time-to-value",
-        ]),
-        (Inches(9.95), "Also / real rival", WHITE, SLATE, [
-            "Windsurf: Cascade UX challenger",
-            "Codex: OpenAI async agents",
-            "Shadow AI = real enterprise rival",
-            "Win = governed standardization",
-            "Proof: Coinbase · Stripe · PayPal",
-            "Outcomes per $ > autocomplete",
-        ]),
-    ]
-    for left, title, tcolor, bar, items in cols:
-        add_rect(s, left, Inches(2.2), Inches(3.0), Inches(4.4), WHITE)
-        add_rect(s, left, Inches(2.2), Inches(3.0), Inches(0.48), bar)
-        add_textbox(s, left + Inches(0.12), Inches(2.28), Inches(2.75), Inches(0.35), title, size=12, bold=True, color=tcolor if bar != WHITE else CHARCOAL, font=FONT)
-        add_bullets(s, left + Inches(0.12), Inches(2.9), Inches(2.75), Inches(3.4), items, size=11, space_after=5)
     notes(s, note)
     return s
 
@@ -520,17 +476,13 @@ After diagnosis, the gains are in call openers and objection handling, discovery
 
 I wouldn’t bet on that blindly. I’d test it with hard data: connect, conversation, meetings — and then how many of those meetings convert to qualified. What worked, what didn’t, keep or kill."""
 
-    N8 = """Quick market context, because it shapes how we coach messaging.
+    N8 = """For competitive fluency, I’d train the team on two frames only — the ones that show up in the challenge and in the field: GitHub Copilot and Claude Code.
 
-Agentic coding is now a two-layer race.
+Versus GitHub Copilot: Copilot is often understood as helping developers write code faster. Cursor is an AI-native environment for completing broader tasks across a codebase. The themes are simple — snippet help to task completion, local suggestions to broader codebase context, isolated assistance to workflow support, point solution to a more integrated development experience.
 
-Layer one is the harness and product layer — how the system plans, uses tools, navigates repositories, and fits developer workflow. That’s where Cursor has already built commercial strength, and it’s what buyers feel in a first conversation.
+Versus Claude Code: it comes up most frequently in recent conversations. We do not need to argue that Claude Code is weak, and our edge is usually not that Cursor has exclusive access to better intelligence. It’s that Cursor applies intelligence more effectively across real engineering workflows — model neutrality instead of single-provider dependence, stronger SDLC integration through tools like Bugbot, better support for large complex codebases, faster time to value across a broader team, and a more complete environment for planning, writing, reviewing, and iterating.
 
-Layer two is the model layer — reasoning quality and long-horizon coding performance. Composer is Cursor’s coding-specialist model path, and that layer continues to strengthen.
-
-Model neutrality still matters, because the best model changes over time, and the frontier labs can be both suppliers and competitors.
-
-For EMEA SDRs, the implication is simple: sell the system buyers can feel today — workflow, context, and execution — and stay fluent on where the model layer is going. I won’t turn customer calls into infrastructure or acquisition conversations."""
+Those are the only competitive frames I’d standardize. Everything else stays out of the talk track."""
 
     N9 = """This is the spine I’d train every rep on.
 
@@ -596,7 +548,7 @@ Culture is scoreboards, competitions, collaboration, and ending every week with 
 
 If I’m earning a first meeting with one of you, I’m listening and diagnosing, not pitching a deck. Permission first — not slide-ware. I’d open with: what prompted you to take the call — or, the reason I’m calling is teams are writing code faster with AI and then hitting a bottleneck getting work through review and into production.
 
-I’d ask where engineering time actually goes — keep-the-lights-on, refactor, innovate, moonshot — because that’s where capacity for the projects that matter is hiding. The software factory frame: ideas in, valuable outputs out. If Copilot, Claude Code, or Codex is already in, I don’t trash-talk. I meet them on the maturity curve: assisted, agentic, cloud agents, governed factory — and ask where the team is stuck.
+I’d ask where engineering time actually goes — keep-the-lights-on, refactor, innovate, moonshot — because that’s where capacity for the projects that matter is hiding. The software factory frame: ideas in, valuable outputs out. If Copilot or Claude Code is already in, I don’t trash-talk — I use the challenge frames. I meet them on the maturity curve: assisted, agentic, cloud agents, governed factory — and ask where the team is stuck.
 
 Brush-off: if I get “just send an email,” I don’t collapse. Happy to — so I send the useful one: are you more focused on standardizing AI coding, or on the review bottleneck after Copilot?
 
@@ -624,7 +576,7 @@ What used to work that I’m confident will not work with Cursor’s audience: g
 
 Cursor wins because the market moved from “help me write code” to “help my org ship software with agents without losing control.” AI coding tools create speed and then move the bottleneck to review and production. Cursor wins when it becomes the governed software factory — workflow, codebase context, model neutrality, and execution across the SDLC — so teams free capacity for the work that actually changes the business.
 
-To a skeptical engineering leader in two sentences: Cursor doesn’t win by claiming the permanently smarter model. We win by applying intelligence better across real engineering workflows — and giving the enterprise the control plane to standardize that without shadow AI or wasted tokens."""
+To a skeptical engineering leader in two sentences: Cursor doesn’t win by claiming the permanently smarter model. We win by applying intelligence better across real engineering workflows — and giving the enterprise the control plane to standardize that without ungoverned AI sprawl or wasted tokens."""
 
     N21 = """I’ll close where I started.
 
@@ -756,14 +708,14 @@ I’m Lindsey Dempsey. I’d love your questions — and if useful, I’m ready 
     numbered_slide(prs, "Live pitch — earn the first meeting (whiteboard craft)", [
         ("01", "Open", "Permission, not slide-ware. “What prompted the call?” — or: writing faster → stuck before production."),
         ("02", "Diagnose", "Time split: KTLO / refactor / innovate / moonshot. Maturity: assisted → agentic → cloud → governed factory."),
-        ("03", "Position", "Software factory: ideas in → valuable outputs out. Competitor in? Don’t trash-talk — meet them on the curve."),
+        ("03", "Position", "Software factory: ideas in → valuable outputs out. Copilot or Claude Code in? Don’t trash-talk — use the two frames."),
         ("04", "Ask", "20 min working session. Brush-off → binary useful email. Close: “Most important thing you saw today?”"),
     ], N17)
 
     content_slide(prs, "Cutting through noise — by persona", [
         "Developer: real-repo context + daily workflow · peer proof · no ROI theater",
         "VP Engineering: standardize AI coding · free KTLO capacity for moonshots · shipping outcomes",
-        "Security / Platform: governed adoption · Privacy Mode · SSO/SCIM/audit · kill shadow AI",
+        "Security / Platform: governed adoption · Privacy Mode · SSO/SCIM/audit · reduce ungoverned AI risk",
         "Triggers that earn 30 seconds: Copilot sprawl · AI policy · migrations · DevEx ownership",
         "Fail: “quick chat,” fake personalization, feature dumps, slide-ware before diagnosis",
     ], N18, size=15)
@@ -788,7 +740,7 @@ I’m Lindsey Dempsey. I’d love your questions — and if useful, I’m ready 
         "Market moved from “help me write code” → “help my org ship with agents — without losing control”",
         "AI creates speed, then moves the bottleneck to review and production",
         "Cursor wins as the governed software factory: workflow · context · neutrality · SDLC execution",
-        "One-liner: we don’t win by claiming the permanently smarter model — we win by applying intelligence better, with the control plane to standardize it",
+        "One-liner: we don’t win by claiming the permanently smarter model — we win by applying intelligence better across real workflows, with a control plane to standardize it",
     ], N20, size=16)
 
     content_slide(prs, "Close — up-level, don’t rebuild", [
