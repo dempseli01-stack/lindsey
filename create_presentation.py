@@ -365,6 +365,85 @@ def numbered_slide(prs, title, items, note):
     return s
 
 
+def calendar_slide(prs, note):
+    """15 / 30-day operating calendar from Lindsey's Part 1 clarifications."""
+    s = blank(prs)
+    header(s, "Operating calendar — first 15 and 30 days")
+
+    # Day 15 column
+    add_rect(s, Inches(0.55), Inches(1.4), Inches(6.0), Inches(5.3), WHITE)
+    add_rect(s, Inches(0.55), Inches(1.4), Inches(6.0), Inches(0.7), CHARCOAL)
+    add_textbox(s, Inches(0.75), Inches(1.5), Inches(5.5), Inches(0.25), "DAYS 1–15", size=12, bold=True, color=CITRUS)
+    add_textbox(s, Inches(0.75), Inches(1.78), Inches(5.5), Inches(0.25), "Inspection · Data · Training design", size=16, bold=True, color=WHITE, font="Georgia")
+    add_bullets(s, Inches(0.8), Inches(2.35), Inches(5.4), Inches(4.0), [
+        "Inspect the machine — no big changes yet",
+        "Pull hard data: qualified vs unqualified meetings",
+        "AE interviews: titles, pain, industry, competitor, next steps",
+        "Funnel: connect → conversation → meeting",
+        "Channel mix: email vs LinkedIn vs phone",
+        "Spot patterns → design coaching & training",
+        "Build objection, discovery, and differentiator modules",
+    ], size=14, space_after=8)
+
+    # Day 30 column
+    add_rect(s, Inches(6.75), Inches(1.4), Inches(6.0), Inches(5.3), WHITE)
+    add_rect(s, Inches(6.75), Inches(1.4), Inches(6.0), Inches(0.7), SLATE)
+    add_textbox(s, Inches(6.95), Inches(1.5), Inches(5.5), Inches(0.25), "DAYS 16–30", size=12, bold=True, color=CITRUS)
+    add_textbox(s, Inches(6.95), Inches(1.78), Inches(5.5), Inches(0.25), "Train · Activity · Daily cadence", size=16, bold=True, color=WHITE, font="Georgia")
+    add_bullets(s, Inches(7.0), Inches(2.35), Inches(5.4), Inches(4.0), [
+        "Run the training (openers, objections, discovery)",
+        "Increase activity metrics once diagnosis is clear",
+        "Daily data pull — what worked yesterday?",
+        "Daily team call — first 15 minutes of the day",
+        "Review: pitch landing · personas · differentiator that won",
+        "One customer story reviewed every day",
+        "Models that leapfrogged overnight → update talk tracks",
+        "Game-plan the day for success before dials start",
+    ], size=13, space_after=6)
+    notes(s, note)
+    return s
+
+
+def diagnosis_slide(prs, note):
+    """Lindsey's diagnosis framework."""
+    s = blank(prs)
+    header(s, "Diagnosis first — learn before you change anything")
+
+    cols = [
+        (Inches(0.5), "AE acceptance truth", [
+            "% meetings → qualified vs unqualified",
+            "Unqualified = wasted AE time",
+            "Talk to AEs: where did it fall flat?",
+            "Pattern hunt: titles · pain · industry",
+            "Competitor? Why no next steps?",
+            "Gaps → coaching plan",
+        ]),
+        (Inches(4.6), "Funnel leaks", [
+            "Connect rate",
+            "Connect → conversation",
+            "Conversation → meeting",
+            "Low C→Conv: openers / objections → objection training",
+            "Low Conv→Mtg: discovery / pain → differentiator or competitor training",
+            "Already using a competitor? Train the frame",
+        ]),
+        (Inches(8.7), "Channel mix", [
+            "% meetings via email",
+            "% meetings via LinkedIn",
+            "% meetings via phone",
+            "Which is strongest?",
+            "Which is weakest?",
+            "Double down on what’s working — lift the weak bucket",
+        ]),
+    ]
+    for left, title, items in cols:
+        add_rect(s, left, Inches(1.4), Inches(3.95), Inches(5.25), WHITE)
+        add_accent(s, left + Inches(0.2), Inches(1.65), width=Inches(0.75))
+        add_textbox(s, left + Inches(0.2), Inches(1.9), Inches(3.5), Inches(0.4), title, size=15, bold=True, color=CHARCOAL, font="Georgia")
+        add_bullets(s, left + Inches(0.2), Inches(2.45), Inches(3.5), Inches(3.9), items, size=13, space_after=7)
+    notes(s, note)
+    return s
+
+
 def build():
     prs = Presentation()
     prs.slide_width = SLIDE_W
@@ -394,31 +473,29 @@ Part three is craft — how I’d pitch, how we cut through noise by persona, an
 
 Clarity over polish. If you want me to go live earlier on the pitch, I’m happy to."""
 
-    N5 = """Days one through fifteen are diagnosis only. I will not make big changes before I understand the machine.
+    N5 = """Diagnosis comes first. I will not change the machine until I understand where it leaks.
 
-On data, I’d pull the full funnel by country, persona, channel, and rep. I’d look hard at AE acceptance and stage progression — because that’s the truth serum on meeting quality. I’d also look at where meetings die: brush-offs, Copilot objections, Claude Code objections, security pushback, or no clear next step. I’d check account quality signals like two-hundred-fifty-plus engineers and AI tooling already in place. And I’d sample calls to see what percent of conversations are using the right Cursor wedge versus feature dumping.
+I’d start with meeting quality: what percentage of meetings move to qualified versus unqualified? Unqualified meetings waste AE time. I’d sit with the AE team and ask where those meetings fell flat — is there a pattern? Is it the titles? No pain? The industry? A competitor already in? Why couldn’t we get next steps? Once I see the pattern in the gaps, I can diagnose what’s missing and build coaching around it.
 
-On people, I’d interview every SDR — especially top and bottom performers — AEs on what makes a meeting great versus junk, Growth on automation and feedback loops, Solutions or SE on where reps get technically fuzzy, and sales leadership on what “up-level” actually means in numbers.
+I’d also inspect the funnel hard: connect rates, connect-to-conversation, conversation-to-meeting. If connect-to-conversation is low — how are we opening the call, and what objections are we getting? If I know the objections, I can lead objection trainings. If conversation-to-meeting is low — are we doing proper discovery to create enough pain that they want the meeting? Are we hearing “already using a competitor”? If so, that’s competitor training or Cursor differentiator training.
 
-My constraint hunt would focus on three places strong teams usually leak: connect-to-conversation, meeting-to-AE-acceptance, and competitive framing."""
+And I’d look at channel mix: what percentage of meetings are set via email, LinkedIn, and phone? Which is weakest, which is strongest? How do we increase one bucket while keeping the others strong — and double down on what’s already working?"""
 
-    N6 = """Just as important as what I’d change is what I would protect.
+    N5B = """Here’s how that diagnosis turns into a calendar.
 
-I would protect the existing tooling and AI research automation stack. I would protect the current ICP and target-market strategy that’s already producing pipeline. I would protect the execution cadence that keeps trains on time. I would protect top-performer craft — I won’t standardize away what your best people are doing. And I would protect AE trust and qualification norms.
+Days one through fifteen are inspection, pulling data, and creating the training. No thrash — learn the patterns first, then design the coaching modules for openers, objections, discovery, and differentiators.
 
-I want to be explicit: I will not reorg, rename stages, or rewrite the full playbook in month one. That’s how leaders break high-performing teams."""
+Days sixteen through thirty are when we take the training live and increase activity. Every day we pull the data to see what worked. The first fifteen minutes of the day is a team call: what worked yesterday, what pitch is landing, which personas sparked interest, what differentiator secured the meeting. We review one customer story a day. We review which models leapfrogged overnight so talk tracks stay current. Then we game-plan the day for success before dials start."""
 
-    N7 = """When a team is already strong on volume, the next level usually comes from quality compounding.
+    N6 = """What I would deliberately not change in the first sixty days is what’s already working well.
 
-First, conversation quality — relevance speed with engineering leaders, and picking the correct wedge for the buyer signal.
+I would protect the team’s ability to know and deliver the Cursor pitch. I would protect reaching out to the right people — the ICP and persona discipline that’s already creating meetings. I’m not here to rip out a motion that works. I’m here to diagnose the leaks and raise conversion quality around it."""
 
-Second, the qualification bar — fewer junk meetings, higher AE acceptance.
+    N7 = """Given where EMEA already is, the next level of improvement doesn’t come from inventing a new org. It comes from tightening the places strong teams usually leak.
 
-Third, competitive fluency — clean Copilot and Claude Code frames without trash talk or feature dumps.
+After diagnosis, the gains are in call openers and objection handling, discovery that creates real pain, competitive and differentiator fluency when Copilot or Claude Code is already in, and channel mix — doubling down on what’s converting while lifting the weaker channel.
 
-Fourth, earlier multi-threading — especially Platform and Security on enterprise and regulated accounts — so opportunities are stronger when they enter the AE motion.
-
-That’s where I’d look first, then validate with the diagnosis data."""
+I wouldn’t bet on that blindly. I’d test it with hard data: connect, conversation, meetings — and then how many of those meetings convert to qualified. What worked, what didn’t, keep or kill."""
 
     N8 = """Quick market context, because it shapes how we coach messaging.
 
@@ -456,19 +533,19 @@ Four — platform across the SDLC. Not just code generation — planning, writin
 
 If a rep tries to say all four on every call, they’ll lose the room. Diagnose first, then pick the wedge."""
 
-    N11 = """Between day fifteen and forty-five, I’d run two experiments only. Small bets, hard metrics, keep or kill.
+    N11 = """The one or two changes I’d test first are practical and measured.
 
-Experiment A is positioning fluency. Hypothesis: connect-to-conversation and AE credibility rise when every opener maps to one differentiator by buyer signal. I’d test with two SDRs for two weeks and hold dial volume constant, so we don’t confuse activity with lift. I’d measure connect-to-conversation, conversation-to-meeting, and AE feedback on whether the rep sounded credible.
+First: once we’ve diagnosed the problem with call openers, objection handling, and discovery — increase activity. Don’t crank dials into a broken talk track. Fix the skill, then raise the volume, and watch connect, conversation, and meetings move.
 
-Experiment B is competitive tracks. Track A for Copilot-installed accounts — move the story from snippet help to task completion and codebase workflow. Track B for Claude Code pockets — neutrality plus SDLC integration, not a model war. Same idea: measure positive replies, meetings, objection handling, and opportunity acceptance.
+Second: improve messaging through personalization and staying up to date with AI models and labs constantly releasing new improvements. That means daily awareness of what leapfrogged overnight and talk tracks that stay current.
 
-If it doesn’t move the metric, we kill it. No sacred cows."""
+I’d measure both with hard data — connect, conversation, meetings — and then ask the quality question: how many of these meetings are now converting to qualified? What worked? What did not work?"""
 
-    N12 = """By day sixty, I want five things true: a baseline dashboard with a clear “constraint of the month,” experiments concluded with keep-or-kill decisions, an updated hiring bar for the next SDR hires, a locked weekly coaching cadence, and my own player-coach call floor — I’m in the work, not above it.
+    N12 = """The feedback loops with Growth and Sales already exist — so the question isn’t inventing them, it’s making them quicker and implementing change faster.
 
-Cross-functionally, I’d run a weekly triangle with Growth and an AE lead. Agenda is simple: what converted, what failed, and one playbook update only. No thrash.
+I’d run weekly SE sessions so SDRs stay sharp on product and competitive framing. I’d make SDR and AE connects mandatory — not optional — so meeting quality feedback is real-time, not buried. And I’d send weekly recaps to AEs, SVPs, RDs, and SEs by territory: what converted, what failed, and one change we’re making.
 
-SDRs execute. Automation helps with research and selection. I inspect quality. Every change gets a metric owner and a review date. That’s how you keep trains on time while still improving."""
+Faster loops, clearer owners, trains on time."""
 
     N14 = """In the AI era, a lot of rote research and first-draft personalization can be automated. So the exceptional SDR looks different.
 
@@ -553,7 +630,7 @@ I’m Lindsey Dempsey. I’d love your questions — and if useful, I’m ready 
 
     # 3
     content_slide(prs, "Agenda", [
-        "Part 1 (20 min) — 15/30/60: diagnose, protect, gains, competitor map, experiments",
+        "Part 1 (20 min) — Diagnosis, 15/30 calendar, protect, gains, experiments, Growth/Sales loops",
         "Part 2 (12 min) — Fundamentals: hire, coach, run as a player-coach",
         "Part 3 (10 min) — Craft: live pitch, personas, why Cursor wins (Copilot + Claude Code)",
         "Clarity over polish — happy to go live earlier on the pitch",
@@ -562,62 +639,59 @@ I’m Lindsey Dempsey. I’d love your questions — and if useful, I’m ready 
     # 4
     section_slide(prs, "Part 1", "How I’d up-level EMEA in the first sixty days", "Part one — how I’d up-level EMEA in the first sixty days.")
 
-    # 5
-    two_col(prs, "Days 1–15: diagnosis only", "Data", [
-        "Full funnel by country, persona, channel, rep",
-        "AE acceptance + stage progression (meeting quality truth serum)",
-        "Where meetings die: brush-offs, Copilot, Claude Code, security, no next step",
-        "Account quality: 250+ engineers, AI tooling already in place",
-        "Call sample: Cursor wedge vs feature dumping",
-    ], "People + constraints", [
-        "Interview every SDR (top + bottom), AEs, Growth, SE/Solutions, sales leadership",
-        "Define “up-level” in numbers with leadership",
-        "Constraint hunt: connect → conversation",
-        "Meeting → AE acceptance",
-        "Competitive framing",
-    ], N5)
+    # 5 — Lindsey diagnosis
+    diagnosis_slide(prs, N5)
 
-    # 6
-    content_slide(prs, "Protect what’s already working", [
-        "Tooling + AI research automation stack",
-        "Current ICP and target-market strategy producing pipeline",
-        "Execution cadence that keeps trains on time",
-        "Top-performer craft — don’t standardize away what your best people do",
-        "AE trust and qualification norms",
-        "Explicit: no reorg, rename stages, or full playbook rewrite in month one",
+    # 6 — Calendar 15 / 30
+    calendar_slide(prs, N5B)
+
+    # 7 — Protect
+    content_slide(prs, "What I’d protect in the first 60 days", [
+        "What’s already working well — don’t rip out a motion that produces pipeline",
+        "Knowing the Cursor pitch — keep that fluency intact",
+        "Reaching out to the right people — ICP and persona discipline",
+        "I’m here to diagnose leaks and raise conversion quality — not reinvent the org chart",
     ], N6)
 
-    # 7 — gains + software factory from history
-    gains_slide(prs, N7)
+    # 8 — Gains
+    content_slide(prs, "Where the next level of gains come from", [
+        "Call openers + objection handling (after we know the real objections)",
+        "Discovery that creates enough pain to earn the meeting",
+        "Competitor / differentiator fluency when Copilot or Claude Code is already in",
+        "Channel mix — double down on the strongest; lift the weakest",
+        "Test before betting: connect · conversation · meetings · % that convert to qualified",
+    ], N7)
 
-    # 8 — full competitor map from history
+    # 9 — competitor map from history
     market_slide(prs, N8)
 
-    # 9 — positioning + enterprise buckets + harness + proof
+    # 10 — positioning
     positioning_slide(prs, N9)
 
-    # 10
+    # 11 — differentiators
     differentiators_slide(prs, N10)
 
-    # 11
-    two_col(prs, "Days 15–45: two experiments only (keep or kill)", "A — Positioning fluency", [
-        "Hypothesis: connect→conversation + AE credibility rise when every opener maps to one differentiator",
-        "Test: 2 SDRs × 2 weeks; dial volume held constant",
-        "Measure: connect→conversation, conversation→meeting, AE credibility feedback",
-    ], "B — Competitive tracks", [
-        "Track A (Copilot-installed): snippet help → task completion + codebase workflow",
-        "Track B (Claude Code pockets): neutrality + SDLC integration, not a model war",
-        "Measure: positive replies, meetings, objection handling, opportunity acceptance",
+    # 12 — experiments (Lindsey)
+    two_col(prs, "Two experiments — test first, measure hard", "1 — Skill then activity", [
+        "Diagnose openers, objection handling, and discovery first",
+        "Then increase activity metrics — don’t crank dials into a broken talk track",
+        "Measure: connect · conversation · meetings",
+        "Quality check: % converting to qualified meetings",
+    ], "2 — Messaging currency", [
+        "Personalization that earns the next 30 seconds",
+        "Stay current as AI models and labs release improvements",
+        "Daily: which models leapfrogged → update talk tracks",
+        "What worked / what didn’t — keep or kill on data",
     ], N11)
 
-    # 12
-    content_slide(prs, "Day 60 outcomes + operating loops", [
-        "Baseline dashboard + clear “constraint of the month”",
-        "Experiments concluded with keep-or-kill decisions",
-        "Updated hiring bar for next SDR hires",
-        "Locked weekly coaching cadence + my own call floor (player-coach)",
-        "Weekly triangle with Growth + AE lead: what converted, what failed, one playbook update",
-        "Every change gets a metric owner and a review date — trains on time",
+    # 13 — Growth & Sales loops (Lindsey)
+    content_slide(prs, "Working with Growth & Sales — faster feedback loops", [
+        "Loops already exist — make them quicker and implement change faster",
+        "Weekly SE sessions — product + competitive sharpness",
+        "Mandatory SDR ↔ AE connects — real-time meeting quality feedback",
+        "Weekly recaps to AEs, SVPs, RDs, and SEs by territory",
+        "What converted · what failed · one change we’re making",
+        "Clear owners. Faster loops. Trains on time.",
     ], N12)
 
     # 13
