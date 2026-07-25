@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Generate Lindsey Dempsey's EMEA SDR up-level interview PowerPoint.
+"""Lindsey Dempsey — EMEA SDR Leader Challenge PowerPoint.
 
-Competitive differentiation slides are built from Lindsey's talk-track
-(history) plus current Cursor product positioning (workflow / context /
-execution; model neutrality; Copilot & Claude Code frames).
+Built from:
+  - Verbatim challenge scripts (speaker notes)
+  - Cursor competitor differentiation history
+  - Enterprise prep, customer proof (Coinbase / Stripe / PayPal)
+  - Official positioning: workflow · context · execution
 """
 
 from pathlib import Path
@@ -22,7 +24,6 @@ MUTED = RGBColor(0x5E, 0x64, 0x6B)
 CITRUS = RGBColor(0xD6, 0xF2, 0x6A)
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 SOFT = RGBColor(0xE8, 0xEA, 0xE4)
-CARD = RGBColor(0xFF, 0xFF, 0xFF)
 
 SLIDE_W = Inches(13.333)
 SLIDE_H = Inches(7.5)
@@ -36,21 +37,7 @@ def set_run(run, *, size, bold=False, color=INK, font="Calibri"):
     run.font.color.rgb = color
 
 
-def add_textbox(
-    slide,
-    left,
-    top,
-    width,
-    height,
-    text,
-    *,
-    size=18,
-    bold=False,
-    color=INK,
-    font="Calibri",
-    align=PP_ALIGN.LEFT,
-    anchor=MSO_ANCHOR.TOP,
-):
+def add_textbox(slide, left, top, width, height, text, *, size=18, bold=False, color=INK, font="Calibri", align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.TOP):
     box = slide.shapes.add_textbox(left, top, width, height)
     tf = box.text_frame
     tf.word_wrap = True
@@ -66,7 +53,7 @@ def add_textbox(
     return box
 
 
-def add_bullets(slide, left, top, width, height, lines, *, size=20, color=INK, space_after=12):
+def add_bullets(slide, left, top, width, height, lines, *, size=18, color=INK, space_after=11):
     box = slide.shapes.add_textbox(left, top, width, height)
     tf = box.text_frame
     tf.word_wrap = True
@@ -106,33 +93,20 @@ def notes(slide, text):
 
 def header_bar(slide, title):
     add_rect(slide, 0, 0, SLIDE_W, SLIDE_H, PAPER)
-    add_rect(slide, 0, 0, SLIDE_W, Inches(1.25), CHARCOAL)
-    add_textbox(
-        slide,
-        Inches(0.85),
-        Inches(0.35),
-        Inches(11.5),
-        Inches(0.65),
-        title,
-        size=26,
-        bold=True,
-        color=WHITE,
-        font="Georgia",
-    )
+    add_rect(slide, 0, 0, SLIDE_W, Inches(1.2), CHARCOAL)
+    add_textbox(slide, Inches(0.8), Inches(0.32), Inches(11.7), Inches(0.6), title, size=24, bold=True, color=WHITE, font="Georgia")
 
 
-def footer(slide, text="Lindsey Dempsey  ·  EMEA SDR  ·  Competition differentiation baked in"):
-    add_textbox(slide, Inches(0.9), Inches(6.95), Inches(11), Inches(0.3), text, size=11, color=MUTED)
-
-
-def title_slide(prs, title, subtitle, footer_text, note):
+def title_slide(prs, note):
     s = blank(prs)
     add_rect(s, 0, 0, SLIDE_W, SLIDE_H, CHARCOAL)
-    add_rect(s, 0, Inches(5.85), SLIDE_W, Inches(1.65), SLATE)
-    add_accent(s, Inches(0.9), Inches(2.2), width=Inches(1.5))
-    add_textbox(s, Inches(0.9), Inches(2.4), Inches(11.5), Inches(1.2), title, size=38, bold=True, color=WHITE, font="Georgia")
-    add_textbox(s, Inches(0.9), Inches(3.7), Inches(11), Inches(0.7), subtitle, size=22, color=SOFT)
-    add_textbox(s, Inches(0.9), Inches(6.25), Inches(11), Inches(0.4), footer_text, size=16, color=PAPER)
+    add_rect(s, 0, Inches(5.7), SLIDE_W, Inches(1.8), SLATE)
+    add_accent(s, Inches(0.85), Inches(1.85), width=Inches(1.5))
+    add_textbox(s, Inches(0.85), Inches(2.1), Inches(11.5), Inches(1.0), "Up-Level the Machine", size=42, bold=True, color=WHITE, font="Georgia")
+    add_textbox(s, Inches(0.85), Inches(3.2), Inches(11.5), Inches(0.5), "Diagnose  →  Protect  →  Experiment  →  Execute", size=22, color=CITRUS)
+    add_textbox(s, Inches(0.85), Inches(3.85), Inches(11.5), Inches(0.5), "Player-coach plan for a high-performing EMEA SDR org", size=18, color=SOFT)
+    add_textbox(s, Inches(0.85), Inches(6.1), Inches(11.5), Inches(0.4), "Lindsey Dempsey  ·  EMEA SDR Leader Candidate", size=18, bold=True, color=WHITE, font="Georgia")
+    add_textbox(s, Inches(0.85), Inches(6.55), Inches(11.5), Inches(0.35), "Cursor wins on workflow · context · execution", size=14, color=SOFT)
     notes(s, note)
     return s
 
@@ -140,34 +114,203 @@ def title_slide(prs, title, subtitle, footer_text, note):
 def section_slide(prs, part, title, note):
     s = blank(prs)
     add_rect(s, 0, 0, SLIDE_W, SLIDE_H, CHARCOAL)
-    add_accent(s, Inches(0.9), Inches(2.55), width=Inches(1.4))
-    add_textbox(s, Inches(0.9), Inches(2.75), Inches(11), Inches(0.45), part.upper(), size=14, bold=True, color=CITRUS)
-    add_textbox(s, Inches(0.9), Inches(3.25), Inches(11.5), Inches(1.2), title, size=34, bold=True, color=WHITE, font="Georgia")
+    add_accent(s, Inches(0.85), Inches(2.5), width=Inches(1.4))
+    add_textbox(s, Inches(0.85), Inches(2.7), Inches(11), Inches(0.4), part.upper(), size=14, bold=True, color=CITRUS)
+    add_textbox(s, Inches(0.85), Inches(3.2), Inches(11.5), Inches(1.2), title, size=32, bold=True, color=WHITE, font="Georgia")
     notes(s, note)
     return s
 
 
-def content_slide(prs, title, bullets, note, *, footer_text=None):
+def content_slide(prs, title, bullets, note, *, size=18):
     s = blank(prs)
     header_bar(s, title)
-    add_bullets(s, Inches(0.9), Inches(1.7), Inches(11.4), Inches(4.7), bullets, size=19, space_after=13)
-    footer(s, footer_text or "Lindsey Dempsey  ·  EMEA SDR")
+    add_bullets(s, Inches(0.85), Inches(1.55), Inches(11.5), Inches(5.0), bullets, size=size, space_after=12)
     notes(s, note)
     return s
 
 
-def two_col_slide(prs, title, left_title, left_items, right_title, right_items, note):
+def two_col(prs, title, left_title, left_items, right_title, right_items, note, *, size=15):
     s = blank(prs)
     header_bar(s, title)
-    add_rect(s, Inches(0.7), Inches(1.55), Inches(5.75), Inches(5.0), WHITE)
-    add_accent(s, Inches(1.0), Inches(1.85), width=Inches(0.9))
-    add_textbox(s, Inches(1.0), Inches(2.1), Inches(5.1), Inches(0.4), left_title, size=18, bold=True, color=CHARCOAL, font="Georgia")
-    add_bullets(s, Inches(1.0), Inches(2.65), Inches(5.1), Inches(3.5), left_items, size=16, space_after=9)
+    add_rect(s, Inches(0.65), Inches(1.45), Inches(5.85), Inches(5.2), WHITE)
+    add_accent(s, Inches(0.95), Inches(1.7), width=Inches(0.85))
+    add_textbox(s, Inches(0.95), Inches(1.95), Inches(5.2), Inches(0.4), left_title, size=17, bold=True, color=CHARCOAL, font="Georgia")
+    add_bullets(s, Inches(0.95), Inches(2.5), Inches(5.2), Inches(3.8), left_items, size=size, space_after=8)
 
-    add_rect(s, Inches(6.85), Inches(1.55), Inches(5.75), Inches(5.0), WHITE)
-    add_accent(s, Inches(7.15), Inches(1.85), width=Inches(0.9))
-    add_textbox(s, Inches(7.15), Inches(2.1), Inches(5.1), Inches(0.4), right_title, size=18, bold=True, color=CHARCOAL, font="Georgia")
-    add_bullets(s, Inches(7.15), Inches(2.65), Inches(5.1), Inches(3.5), right_items, size=16, space_after=9)
+    add_rect(s, Inches(6.8), Inches(1.45), Inches(5.85), Inches(5.2), WHITE)
+    add_accent(s, Inches(7.1), Inches(1.7), width=Inches(0.85))
+    add_textbox(s, Inches(7.1), Inches(1.95), Inches(5.2), Inches(0.4), right_title, size=17, bold=True, color=CHARCOAL, font="Georgia")
+    add_bullets(s, Inches(7.1), Inches(2.5), Inches(5.2), Inches(3.8), right_items, size=size, space_after=8)
+    notes(s, note)
+    return s
+
+
+def market_slide(prs, note):
+    s = blank(prs)
+    header_bar(s, "Market context — agentic coding is a two-layer race")
+
+    add_rect(s, Inches(0.65), Inches(1.45), Inches(5.85), Inches(3.35), WHITE)
+    add_rect(s, Inches(0.65), Inches(1.45), Inches(5.85), Inches(0.5), CHARCOAL)
+    add_textbox(s, Inches(0.9), Inches(1.52), Inches(5.3), Inches(0.4), "Layer 1 — Harness / product", size=15, bold=True, color=CITRUS, font="Georgia")
+    add_bullets(s, Inches(0.9), Inches(2.15), Inches(5.3), Inches(2.4), [
+        "Plans, tools, repo navigation, developer workflow",
+        "What buyers feel in the first conversation",
+        "Cursor’s established commercial strength",
+        "Sell the system they can feel today",
+    ], size=14, space_after=7)
+
+    add_rect(s, Inches(6.8), Inches(1.45), Inches(5.85), Inches(3.35), WHITE)
+    add_rect(s, Inches(6.8), Inches(1.45), Inches(5.85), Inches(0.5), SLATE)
+    add_textbox(s, Inches(7.05), Inches(1.52), Inches(5.3), Inches(0.4), "Layer 2 — Model", size=15, bold=True, color=WHITE, font="Georgia")
+    add_bullets(s, Inches(7.05), Inches(2.15), Inches(5.3), Inches(2.4), [
+        "Reasoning + long-horizon coding quality",
+        "Composer = Cursor’s coding-specialist path",
+        "Best model changes over time",
+        "Frontier labs = suppliers and competitors",
+    ], size=14, space_after=7)
+
+    add_rect(s, Inches(0.65), Inches(5.0), Inches(11.95), Inches(1.55), CHARCOAL)
+    add_textbox(s, Inches(0.9), Inches(5.15), Inches(11.4), Inches(0.35), "Competitive shapes (from differentiation history)", size=13, bold=True, color=CITRUS)
+    add_textbox(
+        s,
+        Inches(0.9),
+        Inches(5.55),
+        Inches(11.4),
+        Inches(0.8),
+        "Cursor = AI-native IDE + enterprise platform   ·   Copilot = plugin / GitHub ecosystem   ·   Claude Code = terminal-first agent   ·   Windsurf = AI-IDE challenger (Cascade)   ·   Often the real competitor = ungoverned shadow AI",
+        size=13,
+        color=SOFT,
+    )
+    notes(s, note)
+    return s
+
+
+def positioning_slide(prs, note):
+    s = blank(prs)
+    header_bar(s, "Cursor positioning — workflow · context · execution")
+
+    add_rect(s, Inches(0.65), Inches(1.4), Inches(11.95), Inches(1.0), CHARCOAL)
+    add_textbox(
+        s,
+        Inches(0.9),
+        Inches(1.55),
+        Inches(11.4),
+        Inches(0.7),
+        "Leading agentic coding platform — shared AI layer on the codebase that connects developers, tools, and agents so teams get more from frontier models.",
+        size=15,
+        color=SOFT,
+    )
+
+    surfaces = [("IDE", "Desktop agentic coding"), ("CLI", "Terminal / any workflow"), ("Automations", "Event-driven agents"), ("Cloud Agents", "Async / browser / mobile")]
+    x = Inches(0.65)
+    for label, sub in surfaces:
+        add_rect(s, x, Inches(2.65), Inches(2.85), Inches(1.25), WHITE)
+        add_accent(s, x + Inches(0.2), Inches(2.85), width=Inches(0.65))
+        add_textbox(s, x + Inches(0.2), Inches(3.05), Inches(2.45), Inches(0.3), label, size=15, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, x + Inches(0.2), Inches(3.4), Inches(2.45), Inches(0.3), sub, size=12, color=MUTED)
+        x += Inches(3.05)
+
+    pillars = [
+        ("Workflow", "How work actually gets done across the SDLC"),
+        ("Context", "Codebase, dependencies, team systems"),
+        ("Execution", "Plan → build → review → ship with less friction"),
+    ]
+    x = Inches(0.65)
+    for title, body in pillars:
+        add_rect(s, x, Inches(4.2), Inches(3.9), Inches(1.35), WHITE)
+        add_textbox(s, x + Inches(0.25), Inches(4.4), Inches(3.4), Inches(0.35), title, size=16, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, x + Inches(0.25), Inches(4.85), Inches(3.4), Inches(0.5), body, size=13, color=MUTED)
+        x += Inches(4.1)
+
+    add_textbox(
+        s,
+        Inches(0.85),
+        Inches(5.8),
+        Inches(11.5),
+        Inches(0.85),
+        "Enterprise 3 buckets:  Productivity (agents + multi-file)  ·  Governance (SSO / SCIM / audit / admin)  ·  Privacy & security (Privacy Mode, SOC 2 Type II)\nProof points: Coinbase · Stripe · PayPal — speed + governed adoption, not autocomplete vanity.",
+        size=13,
+        color=MUTED,
+    )
+    notes(s, note)
+    return s
+
+
+def differentiators_slide(prs, note):
+    s = blank(prs)
+    header_bar(s, "Four differentiators — diagnose first, lead with one wedge")
+    cards = [
+        ("01", "Model neutrality", "Best model changes. Flexibility over single-vendor lock-in. Labs can be suppliers and competitors."),
+        ("02", "Large codebase / harness", "Not just wrapping a model — better finding + using context in messy enterprise repos."),
+        ("03", "Faster time to value", "Useful quickly without every developer inventing a custom setup. Adoption + consistency."),
+        ("04", "Platform across the SDLC", "Plan, write, review, debug, iterate — Bugbot, Agent Review, Automations. Better execution."),
+    ]
+    positions = [(Inches(0.65), Inches(1.45)), (Inches(6.8), Inches(1.45)), (Inches(0.65), Inches(4.05)), (Inches(6.8), Inches(4.05))]
+    for (left, top), (num, title, body) in zip(positions, cards):
+        add_rect(s, left, top, Inches(5.85), Inches(2.35), WHITE)
+        add_accent(s, left + Inches(0.25), top + Inches(0.25), width=Inches(0.75))
+        add_textbox(s, left + Inches(0.25), top + Inches(0.45), Inches(0.9), Inches(0.35), num, size=16, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, left + Inches(1.15), top + Inches(0.45), Inches(4.3), Inches(0.35), title, size=16, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, left + Inches(0.25), top + Inches(1.05), Inches(5.3), Inches(1.0), body, size=14, color=MUTED)
+    notes(s, note)
+    return s
+
+
+def competitive_battlecard(prs, note):
+    s = blank(prs)
+    header_bar(s, "Why we win — competition differentiation")
+
+    add_rect(s, Inches(0.55), Inches(1.35), Inches(12.15), Inches(0.8), CHARCOAL)
+    add_textbox(
+        s,
+        Inches(0.75),
+        Inches(1.45),
+        Inches(11.7),
+        Inches(0.6),
+        "We don’t win by claiming exclusive smarter intelligence forever. We win by applying intelligence better — workflow, codebase context, integrated SDLC — with model neutrality.",
+        size=13,
+        color=SOFT,
+    )
+
+    cols = [
+        (Inches(0.55), "Cursor", CITRUS, CHARCOAL, [
+            "AI-native IDE + enterprise platform",
+            "Snippet help → task completion",
+            "Shared AI layer on the codebase",
+            "IDE · CLI · Automations · Cloud Agents",
+            "Multi-model + Composer path",
+            "Bugbot / review clears PR bottleneck",
+        ]),
+        (Inches(3.7), "vs GitHub Copilot", WHITE, SLATE, [
+            "Helps developers write faster",
+            "Often felt as local / snippet help",
+            "Wins: GitHub ecosystem + friction",
+            "Our move: task completion",
+            "Our move: broader codebase context",
+            "Our move: integrated experience",
+        ]),
+        (Inches(6.85), "vs Claude Code", WHITE, SLATE, [
+            "Strong — don’t trash-talk it",
+            "Terminal-first agent shape",
+            "Not a “smarter model” war",
+            "Our edge: model neutrality",
+            "Our edge: SDLC integration",
+            "Our edge: team time-to-value",
+        ]),
+        (Inches(10.0), "Also in market", WHITE, SLATE, [
+            "Windsurf: Cascade agent UX",
+            "Codex: OpenAI async agents",
+            "Shadow AI: real enterprise rival",
+            "Win = governed standardization",
+            "Proof: Coinbase / Stripe / PayPal",
+            "Outcomes > autocomplete vanity",
+        ]),
+    ]
+    for left, title, title_color, bar, items in cols:
+        add_rect(s, left, Inches(2.35), Inches(3.0), Inches(4.25), WHITE)
+        add_rect(s, left, Inches(2.35), Inches(3.0), Inches(0.5), bar)
+        add_textbox(s, left + Inches(0.12), Inches(2.42), Inches(2.75), Inches(0.38), title, size=12, bold=True, color=title_color if bar != WHITE else CHARCOAL, font="Georgia")
+        add_bullets(s, left + Inches(0.12), Inches(3.05), Inches(2.75), Inches(3.3), items, size=11, space_after=5)
     notes(s, note)
     return s
 
@@ -175,238 +318,12 @@ def two_col_slide(prs, title, left_title, left_items, right_title, right_items, 
 def numbered_slide(prs, title, items, note):
     s = blank(prs)
     header_bar(s, title)
-    top = Inches(1.5)
+    top = Inches(1.45)
     for num, heading, body in items:
-        add_textbox(s, Inches(0.9), top, Inches(0.7), Inches(0.35), num, size=18, bold=True, color=CHARCOAL, font="Georgia")
-        add_textbox(s, Inches(1.6), top, Inches(10.8), Inches(0.32), heading, size=17, bold=True, color=CHARCOAL)
-        add_textbox(s, Inches(1.6), top + Inches(0.32), Inches(10.8), Inches(0.5), body, size=14, color=MUTED)
+        add_textbox(s, Inches(0.85), top, Inches(0.7), Inches(0.35), num, size=17, bold=True, color=CHARCOAL, font="Georgia")
+        add_textbox(s, Inches(1.55), top, Inches(10.8), Inches(0.32), heading, size=16, bold=True, color=CHARCOAL)
+        add_textbox(s, Inches(1.55), top + Inches(0.32), Inches(10.8), Inches(0.5), body, size=14, color=MUTED)
         top += Inches(1.15)
-    notes(s, note)
-    return s
-
-
-def competition_battlecard_slide(prs, note):
-    """Slide 19 — visual battlecard from Lindsey's competition differentiation history."""
-    s = blank(prs)
-    header_bar(s, "Why we win — competition differentiation")
-
-    # Thesis strip
-    add_rect(s, Inches(0.7), Inches(1.45), Inches(11.9), Inches(0.85), CHARCOAL)
-    add_textbox(
-        s,
-        Inches(0.95),
-        Inches(1.55),
-        Inches(11.4),
-        Inches(0.65),
-        "We don’t win by claiming exclusive smarter intelligence forever. We win by applying intelligence better — workflow, codebase context, integrated SDLC — with model neutrality as models and economics change.",
-        size=13,
-        color=SOFT,
-    )
-
-    cols = [
-        (
-            Inches(0.7),
-            "Cursor",
-            CITRUS,
-            CHARCOAL,
-            [
-                "Agentic coding platform",
-                "Snippet help → task completion",
-                "Shared AI layer on the codebase",
-                "IDE · CLI · Automations · Cloud Agents",
-                "Model neutrality + Composer path",
-                "SDLC: plan → write → review → ship",
-            ],
-        ),
-        (
-            Inches(4.85),
-            "vs GitHub Copilot",
-            WHITE,
-            SLATE,
-            [
-                "Helps developers write faster",
-                "Often felt as local / snippet help",
-                "Point solution in many stacks",
-                "Our move: task completion",
-                "Our move: broader codebase context",
-                "Our move: integrated experience",
-            ],
-        ),
-        (
-            Inches(9.0),
-            "vs Claude Code",
-            WHITE,
-            SLATE,
-            [
-                "Strong — don’t trash-talk it",
-                "Not a “smarter model” war",
-                "Our edge: model neutrality",
-                "Our edge: SDLC integration",
-                "Our edge: large / messy repos",
-                "Our edge: faster team time-to-value",
-            ],
-        ),
-    ]
-
-    for left, title, title_color, bar_color, items in cols:
-        add_rect(s, left, Inches(2.5), Inches(3.95), Inches(4.1), WHITE)
-        add_rect(s, left, Inches(2.5), Inches(3.95), Inches(0.55), bar_color)
-        add_textbox(
-            s,
-            left + Inches(0.2),
-            Inches(2.58),
-            Inches(3.5),
-            Inches(0.4),
-            title,
-            size=15,
-            bold=True,
-            color=title_color if bar_color != WHITE else CHARCOAL,
-            font="Georgia",
-        )
-        add_bullets(s, left + Inches(0.2), Inches(3.25), Inches(3.5), Inches(3.1), items, size=13, space_after=7)
-
-    notes(s, note)
-    return s
-
-
-def differentiators_grid(prs, note):
-    """Slide 10 — four wedges as a teachable grid."""
-    s = blank(prs)
-    header_bar(s, "Four differentiators — diagnose first, lead with one wedge")
-
-    cards = [
-        ("01", "Model neutrality", "Best model changes. Buyers want flexibility — not single-vendor lock-in."),
-        ("02", "Large codebase performance", "Messy enterprise repos. Better finding + using context — not just wrapping a model."),
-        ("03", "Faster time to value", "Useful quickly without every developer inventing a custom setup. Adoption + consistency."),
-        ("04", "Platform across the SDLC", "Plan, write, review, debug, iterate — Bugbot, Agent Review, Automations. Better execution."),
-    ]
-    positions = [
-        (Inches(0.7), Inches(1.55)),
-        (Inches(6.85), Inches(1.55)),
-        (Inches(0.7), Inches(4.15)),
-        (Inches(6.85), Inches(4.15)),
-    ]
-    for (left, top), (num, title, body) in zip(positions, cards):
-        add_rect(s, left, top, Inches(5.75), Inches(2.35), WHITE)
-        add_accent(s, left + Inches(0.3), top + Inches(0.3), width=Inches(0.8))
-        add_textbox(s, left + Inches(0.3), top + Inches(0.5), Inches(1), Inches(0.35), num, size=16, bold=True, color=CHARCOAL, font="Georgia")
-        add_textbox(s, left + Inches(1.2), top + Inches(0.5), Inches(4.1), Inches(0.35), title, size=18, bold=True, color=CHARCOAL, font="Georgia")
-        add_textbox(s, left + Inches(0.3), top + Inches(1.1), Inches(5.1), Inches(0.95), body, size=15, color=MUTED)
-
-    notes(s, note)
-    return s
-
-
-def positioning_slide(prs, note):
-    """Slide 9 — spine aligned to Cursor product surfaces + Lindsey summary line."""
-    s = blank(prs)
-    header_bar(s, "Cursor positioning — the spine every rep trains on")
-
-    add_rect(s, Inches(0.7), Inches(1.5), Inches(11.9), Inches(1.1), CHARCOAL)
-    add_textbox(
-        s,
-        Inches(0.95),
-        Inches(1.65),
-        Inches(11.4),
-        Inches(0.8),
-        "Leading agentic coding platform — a shared AI layer on the codebase that connects developers, tools, and agents so teams get more from frontier models.",
-        size=16,
-        color=SOFT,
-    )
-
-    surfaces = [
-        ("IDE", "Desktop agentic coding"),
-        ("CLI", "Any terminal / script"),
-        ("Automations", "Repeatable agent workflows"),
-        ("Cloud Agents", "Browser / mobile / async"),
-    ]
-    x = Inches(0.7)
-    for label, sub in surfaces:
-        add_rect(s, x, Inches(2.9), Inches(2.85), Inches(1.35), WHITE)
-        add_accent(s, x + Inches(0.25), Inches(3.1), width=Inches(0.7))
-        add_textbox(s, x + Inches(0.25), Inches(3.3), Inches(2.4), Inches(0.35), label, size=16, bold=True, color=CHARCOAL, font="Georgia")
-        add_textbox(s, x + Inches(0.25), Inches(3.7), Inches(2.4), Inches(0.35), sub, size=13, color=MUTED)
-        x += Inches(3.1)
-
-    add_textbox(
-        s,
-        Inches(0.9),
-        Inches(4.55),
-        Inches(11.5),
-        Inches(0.4),
-        "Teach these three words",
-        size=14,
-        bold=True,
-        color=CHARCOAL,
-        font="Georgia",
-    )
-    pillars = [("Workflow", "How work actually gets done"), ("Context", "Codebase + dependencies + team systems"), ("Execution", "Plan → build → review → ship with less friction")]
-    x = Inches(0.7)
-    for title, body in pillars:
-        add_rect(s, x, Inches(5.05), Inches(3.85), Inches(1.45), WHITE)
-        add_textbox(s, x + Inches(0.25), Inches(5.2), Inches(3.35), Inches(0.35), title, size=16, bold=True, color=CHARCOAL, font="Georgia")
-        add_textbox(s, x + Inches(0.25), Inches(5.6), Inches(3.35), Inches(0.65), body, size=13, color=MUTED)
-        x += Inches(4.05)
-
-    notes(s, note)
-    return s
-
-
-def market_context_slide(prs, note):
-    """Slide 8 — two-layer race from Lindsey's competition history."""
-    s = blank(prs)
-    header_bar(s, "Market context — agentic coding is a two-layer race")
-
-    # Layer cards
-    add_rect(s, Inches(0.7), Inches(1.55), Inches(5.75), Inches(3.55), WHITE)
-    add_rect(s, Inches(0.7), Inches(1.55), Inches(5.75), Inches(0.55), CHARCOAL)
-    add_textbox(s, Inches(0.95), Inches(1.65), Inches(5.2), Inches(0.4), "Layer 1 — Harness / product", size=16, bold=True, color=CITRUS, font="Georgia")
-    add_bullets(
-        s,
-        Inches(0.95),
-        Inches(2.35),
-        Inches(5.2),
-        Inches(2.5),
-        [
-            "Plans, tools, repo navigation, developer workflow",
-            "What buyers feel in the first conversation",
-            "Where Cursor already has commercial strength",
-            "Sell the system they can feel today",
-        ],
-        size=15,
-        space_after=9,
-    )
-
-    add_rect(s, Inches(6.85), Inches(1.55), Inches(5.75), Inches(3.55), WHITE)
-    add_rect(s, Inches(6.85), Inches(1.55), Inches(5.75), Inches(0.55), SLATE)
-    add_textbox(s, Inches(7.1), Inches(1.65), Inches(5.2), Inches(0.4), "Layer 2 — Model", size=16, bold=True, color=WHITE, font="Georgia")
-    add_bullets(
-        s,
-        Inches(7.1),
-        Inches(2.35),
-        Inches(5.2),
-        Inches(2.5),
-        [
-            "Reasoning quality + long-horizon coding",
-            "Composer = Cursor’s coding-specialist path",
-            "Best model changes over time",
-            "Frontier labs = suppliers and competitors",
-        ],
-        size=15,
-        space_after=9,
-    )
-
-    add_rect(s, Inches(0.7), Inches(5.3), Inches(11.9), Inches(1.25), CHARCOAL)
-    add_textbox(
-        s,
-        Inches(0.95),
-        Inches(5.45),
-        Inches(11.4),
-        Inches(0.95),
-        "EMEA SDR implication: lead with workflow · context · execution. Stay fluent on the model layer. Never turn a customer call into an infrastructure or acquisition debate. Model neutrality is the durable frame.",
-        size=15,
-        color=SOFT,
-    )
     notes(s, note)
     return s
 
@@ -419,9 +336,6 @@ def build():
     # 1
     title_slide(
         prs,
-        "Up-leveling the EMEA SDR machine",
-        "Diagnose  ·  Protect  ·  Experiment  ·  Execute",
-        "Lindsey Dempsey  ·  Player-coach interview",
         """Hi everyone — I’m Lindsey Dempsey. Thank you for having me.
 
 Today I’m going to walk through how I would up-level the EMEA SDR machine — not rebuild it. My framing is simple: diagnose, protect, experiment, and execute, as a hands-on player-coach.
@@ -432,10 +346,10 @@ I’ll keep this practical and leave room for discussion and a live pitch.""",
     # 2
     content_slide(
         prs,
-        "Thesis: make a high-performing machine materially better",
+        "Thesis: don’t rebuild a working machine — raise its ceiling",
         [
-            "EMEA already works: AI-augmented workflows, clear ICP, eight-figure qualified pipeline / month",
-            "Job = find real constraints, protect what’s working, run a few high-leverage experiments",
+            "EMEA already high-performing: AI-augmented workflows, clear ICP, eight-figure monthly pipeline",
+            "Job = find real constraints, protect what works, run a few high-leverage experiments",
             "Every SDR fluent in how Cursor wins — workflow, context, execution",
             "Lead as a player-coach: trains on time, inspection over activity theater",
             "Success = better conversation quality + higher AE acceptance — not a reorg",
@@ -454,9 +368,9 @@ And I would lead as a player-coach. Trains on time. Inspection over activity the
         prs,
         "Agenda",
         [
-            "Part 1 — First 15 / 30 / 60 days: diagnose, protect, gains, two experiments",
-            "Part 2 — Fundamentals: hire, coach, and run the team as a player-coach",
-            "Part 3 — Craft: live pitch, persona outreach, why Cursor wins (Copilot + Claude Code)",
+            "Part 1 (20 min) — First 15 / 30 / 60: diagnose, protect, gains, competitive context, two experiments",
+            "Part 2 (12 min) — Fundamentals: hire, coach, run the team as a player-coach",
+            "Part 3 (10 min) — Craft: live pitch, persona outreach, why Cursor wins (Copilot + Claude Code)",
             "Clarity over polish — happy to go live earlier on the pitch",
         ],
         """Here’s how I’ll use the time.
@@ -474,7 +388,7 @@ Clarity over polish. If you want me to go live earlier on the pitch, I’m happy
     section_slide(prs, "Part 1", "How I’d up-level EMEA in the first sixty days", "Part one — how I’d up-level EMEA in the first sixty days.")
 
     # 5
-    two_col_slide(
+    two_col(
         prs,
         "Days 1–15: diagnosis only",
         "Data",
@@ -528,7 +442,7 @@ I want to be explicit: I will not reorg, rename stages, or rewrite the full play
         [
             "Conversation quality — relevance speed + correct wedge for the buyer signal",
             "Qualification bar — fewer junk meetings, higher AE acceptance",
-            "Competitive fluency — clean Copilot / Claude Code frames (no trash talk or feature dumps)",
+            "Competitive fluency — clean Copilot / Claude Code / Windsurf frames (no trash talk)",
             "Earlier multi-threading — Platform + Security on enterprise / regulated accounts",
             "Validate with diagnosis data before scaling changes",
         ],
@@ -545,8 +459,8 @@ Fourth, earlier multi-threading — especially Platform and Security on enterpri
 That’s where I’d look first, then validate with the diagnosis data.""",
     )
 
-    # 8 — competition history: two-layer race
-    market_context_slide(
+    # 8
+    market_slide(
         prs,
         """Quick market context, because it shapes how we coach messaging.
 
@@ -561,7 +475,7 @@ Model neutrality still matters, because the best model changes over time, and th
 For EMEA SDRs, the implication is simple: sell the system buyers can feel today — workflow, context, and execution — and stay fluent on where the model layer is going. I won’t turn customer calls into infrastructure or acquisition conversations.""",
     )
 
-    # 9 — competition history: positioning spine
+    # 9
     positioning_slide(
         prs,
         """This is the spine I’d train every rep on.
@@ -577,8 +491,8 @@ It bridges planning, execution, and validation so work moves through the SDLC wi
 The summary line I want reps to be able to say is: Cursor helps teams get more out of frontier models by pairing them with better workflow, better context, and a more integrated way to build software.""",
     )
 
-    # 10 — competition history: four differentiators
-    differentiators_grid(
+    # 10
+    differentiators_slide(
         prs,
         """Cursor’s core differentiation is the combination of four things, and I’d teach SDRs to lead with only one based on the buyer’s pain.
 
@@ -594,7 +508,7 @@ If a rep tries to say all four on every call, they’ll lose the room. Diagnose 
     )
 
     # 11
-    two_col_slide(
+    two_col(
         prs,
         "Days 15–45: two experiments only (keep or kill)",
         "A — Positioning fluency",
@@ -628,7 +542,7 @@ If it doesn’t move the metric, we kill it. No sacred cows.""",
             "Updated hiring bar for next SDR hires",
             "Locked weekly coaching cadence + my own call floor (player-coach)",
             "Weekly triangle with Growth + AE lead: what converted, what failed, one playbook update",
-            "Every change gets a metric owner and a review date",
+            "Every change gets a metric owner and a review date — trains on time",
         ],
         """By day sixty, I want five things true: a baseline dashboard with a clear “constraint of the month,” experiments concluded with keep-or-kill decisions, an updated hiring bar for the next SDR hires, a locked weekly coaching cadence, and my own player-coach call floor — I’m in the work, not above it.
 
@@ -638,7 +552,7 @@ SDRs execute. Automation helps with research and selection. I inspect quality. E
     )
 
     # 13
-    section_slide(prs, "Part 2", "Fundamentals — how I lead day to day", "Part two — fundamentals. How I lead day to day.")
+    section_slide(prs, "Part 2", "Fundamentals — how I lead day to day as a player-coach", "Part two — fundamentals. How I lead day to day.")
 
     # 14
     content_slide(
@@ -648,7 +562,7 @@ SDRs execute. Automation helps with research and selection. I inspect quality. E
             "Judgment — which account and persona deserve the dial",
             "Relevance speed — earn 30 seconds with a technical buyer",
             "Positioning fluency — workflow, context, execution, correct wedge",
-            "Competitive clarity — Copilot + Claude Code without trash talk",
+            "Competitive clarity — Copilot + Claude Code + Windsurf without trash talk",
             "Security instincts — calm on Privacy Mode and enterprise controls",
             "Execution discipline — trains on time",
             "Bar: diagnose the buyer’s constraint and match Cursor to it — don’t recite features",
@@ -666,7 +580,7 @@ My bar is simple: they don’t recite features. They diagnose the buyer’s cons
     )
 
     # 15
-    two_col_slide(
+    two_col(
         prs,
         "Hiring + coaching",
         "Hiring bar",
@@ -695,12 +609,7 @@ Underperformance gets a stage diagnosis, a skill plan, and a timeline — not va
     )
 
     # 16
-    section_slide(
-        prs,
-        "Part 3",
-        "Craft and curiosity — happy to go live here",
-        "Part three — craft and curiosity. This is where I’m happiest going live.",
-    )
+    section_slide(prs, "Part 3", "Craft and curiosity — happy to go live here", "Part three — craft and curiosity. This is where I’m happiest going live.")
 
     # 17
     numbered_slide(
@@ -737,6 +646,7 @@ I’m happy to run this live on one of you right now if you’d like.""",
             "Security / Platform: Privacy Mode, admin controls, governed rollout (avoid hype)",
             "What works: trigger-based relevance (Copilot sprawl, AI policy, migrations, DevEx) + one sharp question",
             "What fails: generic “quick chat” spam and fake personalization",
+            "Proof to arm reps: Coinbase (agent-first), Stripe (rollout), PayPal (enterprise velocity)",
         ],
         """Technical buyers are saturated on LinkedIn and email, so persona-true outreach matters more than volume tricks.
 
@@ -747,10 +657,11 @@ For a VP of Engineering: lead with a shared AI layer, speed across the SDLC, and
 For Security or Platform: lead with Privacy Mode, admin controls, and governed rollout so AI coding doesn’t become shadow IT. Avoid hype.
 
 What still works is trigger-based relevance — Copilot sprawl, AI policy moments, migrations, DevEx ownership — and one sharp question. What fails is generic “quick chat” spam and fake personalization.""",
+        size=16,
     )
 
-    # 19 — competition battlecard
-    competition_battlecard_slide(
+    # 19
+    competitive_battlecard(
         prs,
         """For a skeptical engineering leader, my one-to-two sentence version is this:
 
@@ -762,7 +673,7 @@ Versus Claude Code: Claude Code is strong, and I won’t argue it’s weak. Our 
     )
 
     # 20
-    two_col_slide(
+    two_col(
         prs,
         "Security instincts (not a certification dump)",
         "Privacy Mode",
@@ -776,7 +687,7 @@ Versus Claude Code: Claude Code is strong, and I won’t argue it’s weak. Our 
         [
             "SOC 2 Type II; secure handling of code + metadata",
             "Admin controls, visibility, model / MCP governance",
-            "Security requirements influence product design",
+            "SSO / SCIM / audit logs for regulated buyers",
             "First-call frame: adoption confidence — bring the right partner when deep",
         ],
         """Security and privacy often decide enterprise evaluations, so SDRs need calm instincts, not a certification dump.

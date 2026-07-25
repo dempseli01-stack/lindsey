@@ -1,13 +1,21 @@
-# Lindsey Dempsey — EMEA SDR interview deck
+# Lindsey Dempsey — EMEA SDR Leader Challenge deck
 
-21-slide widescreen PowerPoint for Lindsey Dempsey’s Cursor EMEA SDR leadership interview.
-
-Competitive slides (8–11, 19) are rebuilt as visual battlecards from Lindsey’s **competition differentiation** talk track — two-layer race, positioning spine (workflow / context / execution), four wedges, and Copilot / Claude Code frames — aligned with current Cursor product surfaces.
+21-slide widescreen PowerPoint rebuilt from Lindsey’s full **Cursor competitor differentiation** prep history plus the official challenge positioning and verbatim talk tracks.
 
 ## Files
 
-- `Lindsey_Presentation.pptx` — finished deck with verbatim speaker notes
+- `Lindsey_Presentation.pptx` — finished deck (Speaker Notes = verbatim scripts)
 - `create_presentation.py` — regenerates the deck
+- `history/cursor_competitor_differentiation_history.md` — condensed source frameworks used for competitive slides
+
+## What’s baked in from the history
+
+- Competitive shapes: Cursor vs Copilot vs Claude Code vs Windsurf vs Codex vs shadow AI
+- Win formula: **workflow · context · execution**
+- Four differentiators (lead with one wedge)
+- Enterprise 3 buckets: productivity / governance / privacy & security
+- Customer proof pointers: Coinbase, Stripe, PayPal
+- Challenge operating frame: diagnose → protect → experiment → execute
 
 ## Regenerate
 
