@@ -492,7 +492,7 @@ Part one is the first fifteen, thirty, and sixty days — diagnosis, what I’d 
 
 Part two is fundamentals — how I hire, coach, and run the team day to day as a player-coach.
 
-Part three is craft — how I’d pitch, how we cut through noise by persona, and why Cursor wins, including Copilot and Claude Code.
+Part three is lighter on slides and partly live — about ten minutes. I’ll show how I’d earn a first meeting, how that changes by persona, how I cut through noise, and why I believe Cursor wins. I’m drawing from the whiteboard motion, not a rehearsed script.
 
 Clarity over polish. If you want me to go live earlier on the pitch, I’m happy to."""
 
@@ -570,70 +570,65 @@ I’d run weekly SE sessions so SDRs stay sharp on product and competitive frami
 
 Faster loops, clearer owners, trains on time."""
 
-    N14 = """In the AI era, a lot of rote research and first-draft personalization can be automated. So the exceptional SDR looks different.
+    N14 = """The role has changed because AI can take the rote work — research, first drafts, list building — so SDRs can be as efficient as possible and focus on what humans are actually good at.
 
-They win on judgment — which account and persona deserve the dial.
-Relevance speed — earning thirty seconds with a technical buyer.
-Positioning fluency — workflow, context, execution, and the correct wedge.
-Competitive clarity — Copilot and Claude Code without trash talk.
-Security instincts — calm and grounded on Privacy Mode and enterprise controls.
-And execution discipline — trains on time.
+Humans still want to be sold to by humans. Even with AI, messaging and cold calls need humanization. The way we stand out isn’t louder sequences — it’s talking to prospects from a place of help: start a real discussion so they can reap the benefits of Cursor.
 
-My bar is simple: they don’t recite features. They diagnose the buyer’s constraint and match Cursor to it."""
+Exceptional is someone who uses AI for the rote work, then stands out through genuine discovery, care, understanding the current state and the pains underneath it, and knowing which customer story matches the use case. They need organization and time management, research and business intuition, written and verbal communication, active listening and adaptability — carry the conversation and react with value — objection handling, and storytelling that paints technical pain and business value."""
 
-    N15 = """On hiring, I’m looking for coachable people who communicate clearly, are curious about technical buyers, have process discipline, and learn fast.
+    N15 = """When I hire, I’m looking for someone who will be excited every single day — and someone I can see moving into the next role.
 
-Hard nos: feature dumpers, activity theater without conversion ownership, people who can’t take critique, and anyone who overclaims the product.
+My bar is usually one to two years in sales, or something technical that required intelligence. Some of my best hires have been teachers or people with real work experience who want into sales — they understand concepts quickly.
 
-I’d assess with a mock call to a VP of Engineering or Platform lead, Copilot and Claude Code objections, a sixty-second Cursor pitch using the official framing, and a soft security question like, “Our CISO won’t allow AI on our code — what do you say?”
+Every candidate needs four traits plus one non-negotiable: intelligence so they can gain knowledge, drive so they can gain the skills, coachable so they adapt, integrity so they’re honest — and a genuine passion for AI and Cursor. It’s not enough to want a fast-growing company. I want people who nerd out on which model is best and what’s changing in the space.
 
-On coaching: daily scoreboard visibility and same-day course-correction if someone misses the standard. Weekly one-on-ones focused on one funnel leak only. Weekly team session with one win wire and one talk-track upgrade. Call reviews scored on opener, wedge, competitive frame, and clean ask.
+Process-wise I source through LinkedIn Recruiter, and I prefer native language for the role — I’ve seen non-native speakers struggle when they have to sell technically in a second language."""
 
-Underperformance gets a stage diagnosis, a skill plan, and a timeline — not vague pressure."""
+    N15B = """Coaching and development all follow the same framework: Tell — what, who, why. Show — what good looks like. Observe — let them struggle. Provide feedback — but first ask what they did well and what they’d do differently. Repeat until it’s mastered.
 
-    N17 = """If I’m cold-calling into this room, the spine is open, position, wedge, ask.
+For new reps I spend a lot of time with them — constant training, homework, fix gaps quickly, and always the why. I give a ninety-day ramp broken down by week so they know exactly what to do when the week starts, and a buddy on the team for questions and advice.
 
-Open: the reason I’m calling is engineering teams are moving from AI that helps write snippets to AI that helps complete work across the codebase — and most tools only cover part of that workflow.
+For top people I learn their motivation early, catch them doing something good, let them mentor, and keep coaching the gaps in their workflow. For underperformance I put a coaching plan in place as soon as I see someone off track — structure before it becomes a bigger issue.
 
-Position: Cursor is an agentic coding platform — a coding agent across the IDE, CLI, Automations, and Cloud Agents — with a shared AI layer that understands your codebase and workflows so planning, building, review, and shipping happen with less friction.
+Culture is scoreboards, competitions, collaboration, and ending every week with a shoutout for someone else on the team so collaboration doesn’t go unnoticed."""
 
-Wedge: I pick one differentiator based on what I heard.
+    N17 = """This section is live — I’m happiest going here without slides doing the talking. Same craft as the whiteboard session with Derek and Dave at J&J.
 
-Ask: worth twenty minutes to map where you’re getting leverage versus where workflow still breaks — write, review, or ship?
+If I’m earning a first meeting with one of you, I’m listening and diagnosing, not pitching a deck. Permission first — not slide-ware. I’d open with: what prompted you to take the call — or, the reason I’m calling is teams are writing code faster with AI and then hitting a bottleneck getting work through review and into production.
 
-If I get “just send an email,” I don’t collapse. I say: happy to — so I send the useful one: are you more focused on standardizing AI coding, or on the review bottleneck after Copilot?
+I’d ask where engineering time actually goes — keep-the-lights-on, refactor, innovate, moonshot — because that’s where capacity for the projects that matter is hiding. The software factory frame: ideas in, valuable outputs out. If Copilot, Claude Code, or Codex is already in, I don’t trash-talk. I meet them on the maturity curve: assisted, agentic, cloud agents, governed factory — and ask where the team is stuck.
 
-I’m happy to run this live on one of you right now if you’d like."""
+Brush-off: if I get “just send an email,” I don’t collapse. Happy to — so I send the useful one: are you more focused on standardizing AI coding, or on the review bottleneck after Copilot?
 
-    N18 = """Technical buyers are saturated on LinkedIn and email, so persona-true outreach matters more than volume tricks.
+Ask: worth twenty minutes with you — and if useful, your platform lead — to map where AI coding helps versus where workflow still breaks. In a working session I’d close the way the whiteboard did: what’s the most important thing you saw today — for you personally, and for the company.
 
-For a hands-on developer: lead with real-repo context and daily workflow. Avoid corporate ROI theater.
+I’m ready to do this live on one of you right now."""
 
-For a VP of Engineering: lead with a shared AI layer, speed across the SDLC, and standardizing teams. Avoid feature laundry lists.
+    N18 = """Inboxes and LinkedIn are saturated, so I don’t believe volume tricks break through with this audience. Breaking through is persona-true relevance — one sharp question tied to a real trigger.
 
-For Security or Platform: lead with Privacy Mode, admin controls, and governed rollout so AI coding doesn’t become shadow IT. Avoid hype.
+For a hands-on developer: lead with real-repo context and daily workflow. Avoid corporate ROI theater. Peer proof and “try this on your actual pain” beat feature lists.
 
-What still works is trigger-based relevance — Copilot sprawl, AI policy moments, migrations, DevEx ownership — and one sharp question. What fails is generic “quick chat” spam and fake personalization."""
+For a VP of Engineering: lead with standardization, shipping speed, and capacity — the whiteboard motion of freeing time from keep-the-lights-on into moonshots. Avoid feature laundry lists.
 
-    N19 = """For a skeptical engineering leader, my one-to-two sentence version is this:
+For Security or Platform: lead with governed adoption — Privacy Mode, admin controls, SSO/SCIM/audit — so AI coding doesn’t become shadow IT. Avoid hype. Earn the right to go deep later.
 
-Cursor doesn’t win because we claim exclusive access to better intelligence forever. We win because we apply intelligence more effectively — through workflow, codebase context, and an integrated system across the SDLC — with model neutrality as capabilities and economics change.
+What still works: trigger-based relevance — Copilot sprawl, AI policy moments, migrations, DevEx ownership — plus a binary question that earns the next conversation. What fails: “quick chat” spam, fake personalization, and slide-ware before you’ve earned diagnosis."""
 
-Versus GitHub Copilot: Copilot helps developers write faster. Cursor is the shift from snippet help to task completion, from local suggestions to broader codebase context, from a point solution to a more integrated development experience.
+    N19 = """Getting attention right now is about earning thirty seconds with a technical buyer, not winning the inbox lottery.
 
-Versus Claude Code: Claude Code is strong, and I won’t argue it’s weak. Our edge usually isn’t exclusive smarter model access. It’s model neutrality instead of single-provider dependence, stronger integration across the SDLC, better support for large complex codebases, and faster time to value across a broader team."""
+What works: a reason for the call tied to their world; diagnosing where time and bottlenecks actually sit; meeting them on the AI maturity curve; using customer stories that match the use case — Coinbase for agent-first, Stripe for rollout, PayPal for enterprise velocity, plus whiteboard stories like Nike RFID, Amplitude background agents, T-Mobile at scale; and asking for a working session, not a vague chat. Token efficiency and outcomes per dollar matter when finance is in the room — that’s attention currency too.
 
-    N20 = """Security and privacy often decide enterprise evaluations, so SDRs need calm instincts, not a certification dump.
+What used to work that I’m confident will not work with Cursor’s audience: generic sequences, “just checking in,” ROI theater for developers, and feature dumps. Technical buyers smell fake personalization instantly, and they punish anyone who tries to out-engineer them on a cold call. Curiosity and diagnosis beat polish."""
 
-On Privacy Mode: customer code is not stored or retained, not used to train models, and requests are isolated and ephemeral.
+    N20 = """My own read — not the company line — is this:
 
-On enterprise posture: SOC 2, secure handling of code and metadata, admin controls and visibility, and the fact that security requirements influence product design.
+Cursor wins because the market moved from “help me write code” to “help my org ship software with agents without losing control.” AI coding tools create speed and then move the bottleneck to review and production. Cursor wins when it becomes the governed software factory — workflow, codebase context, model neutrality, and execution across the SDLC — so teams free capacity for the work that actually changes the business.
 
-In a live cycle, security shows up as adoption confidence — “we can roll this out without creating shadow AI” — not as a slide war on the first call. If it gets deep, I bring in the right technical partner and stay precise."""
+To a skeptical engineering leader in two sentences: Cursor doesn’t win by claiming the permanently smarter model. We win by applying intelligence better across real engineering workflows — and giving the enterprise the control plane to standardize that without shadow AI or wasted tokens."""
 
     N21 = """I’ll close where I started.
 
-In the first sixty days I won’t invent a new EMEA. I’ll diagnose the real constraints with data and AE/SDR truth. I’ll protect the automation, ICP, and cadence already creating pipeline. I’ll train the team on workflow, context, and execution — four wedges, clean competitive frames. I’ll run one or two measured experiments and keep or kill them on metrics. And I’ll lead as a player-coach so the floor rises with the ceiling.
+In the first sixty days I won’t invent a new EMEA. I’ll diagnose the real constraints with data and AE truth — especially qualified versus unqualified meetings. I’ll protect the pitch and the right-person discipline that’s already working. I’ll train and raise activity only after we fix openers, objections, and discovery. I’ll run faster loops with Growth, AEs, and SEs. And I’ll lead as a player-coach — Tell, Show, Observe, Feedback — so the floor rises with the ceiling.
 
 That’s how you up-level a function that’s already working — and keep the trains on time.
 
@@ -654,8 +649,8 @@ I’m Lindsey Dempsey. I’d love your questions — and if useful, I’m ready 
     # 3
     content_slide(prs, "Agenda", [
         "Part 1 (20 min) — Diagnosis, 15/30 calendar, protect, gains, experiments, Growth/Sales loops",
-        "Part 2 (12 min) — Fundamentals: hire, coach, run as a player-coach",
-        "Part 3 (10 min) — Craft: live pitch, personas, why Cursor wins (Copilot + Claude Code)",
+        "Part 2 (12 min) — AI-era SDR, hiring bar, Tell→Show→Observe coaching",
+        "Part 3 (~10 min, partly live) — Pitch, personas, attention, why we win",
         "Clarity over polish — happy to go live earlier on the pitch",
     ], N3)
 
@@ -717,77 +712,91 @@ I’m Lindsey Dempsey. I’d love your questions — and if useful, I’m ready 
         "Clear owners. Faster loops. Trains on time.",
     ], N12)
 
-    # 13
+    # Part 2
     section_slide(prs, "Part 2", "Fundamentals — how I lead day to day as a player-coach", "Part two — fundamentals. How I lead day to day.")
 
-    # 14
     content_slide(prs, "The ideal AI-era SDR", [
-        "Judgment — which account and persona deserve the dial",
-        "Relevance speed — earn 30 seconds with a technical buyer",
-        "Positioning fluency — workflow, context, execution, correct wedge",
-        "Competitive clarity — Copilot + Claude Code + Windsurf without trash talk",
-        "Security instincts — calm on Privacy Mode and enterprise controls",
-        "Execution discipline — trains on time",
-        "Bar: diagnose the buyer’s constraint and match Cursor to it — don’t recite features",
-    ], N14)
+        "AI takes the rote work — humans still want to be sold to by humans",
+        "Humanize messaging and cold calls — stand out by helping, not spamming",
+        "Exceptional: AI for prep + genuine discovery, care, current-state pain, use-case stories",
+        "Skills: org/time management · research/intuition · written & verbal",
+        "Active listening + adaptability — carry the conversation and react with value",
+        "Objection handling + storytelling — technical pain and business value",
+    ], N14, size=16)
 
-    # 15
-    two_col(prs, "Hiring + coaching", "Hiring bar", [
-        "Coachable, clear communicators, curious about technical buyers, process discipline, learn fast",
-        "Hard nos: feature dumpers, activity theater, can’t take critique, overclaim the product",
-        "Assess: mock call (VP Eng / Platform), Copilot + Claude Code objections, 60-sec Cursor pitch, soft security question",
-    ], "Coaching system", [
-        "Daily scoreboard + same-day course-correction",
-        "Weekly 1:1s — one funnel leak only",
-        "Weekly team: one win wire + one talk-track upgrade",
-        "Call reviews: opener, wedge, competitive frame, clean ask",
-        "Underperformance = stage diagnosis + skill plan + timeline",
-    ], N15)
+    two_col(prs, "Hiring great talent", "Bar", [
+        "Excited every day — can I see them in the next role?",
+        "1–2 years sales or technical / high-intelligence background",
+        "Teachers & career-switchers often win — they learn concepts fast",
+        "LinkedIn Recruiter · prefer native language for the role",
+    ], "Must-haves", [
+        "Intelligence — can gain knowledge",
+        "Drive — will gain the skills",
+        "Coachable — adapt to change",
+        "Integrity — honest",
+        "Obsessed with AI + Cursor — not just “hot company”",
+    ], N15, size=14)
 
-    # 16
-    section_slide(prs, "Part 3", "Craft and curiosity — happy to go live here", "Part three — craft and curiosity. This is where I’m happiest going live.")
+    content_slide(prs, "Coaching system — Tell → Show → Observe → Feedback", [
+        "Tell (what / who / why) → Show good → Observe (let them struggle) → Feedback (ask them first) → Repeat",
+        "Ramp: 90-day plan by week + homework + buddy system + heavy on the why",
+        "Top performers: learn motivation early · catch them doing good · make them mentors",
+        "Underperformance: coaching plan as soon as someone is off track — structure early",
+        "Culture: scoreboards · competitions · collaboration · Friday shoutouts for someone else",
+    ], N15B, size=15)
 
-    # 17
-    numbered_slide(prs, "Live pitch spine: open → position → wedge → ask", [
-        ("01", "Open", "From AI that helps write snippets → AI that helps complete work across the codebase."),
-        ("02", "Position", "Agentic coding platform across IDE, CLI, Automations, Cloud Agents — shared AI layer on your codebase."),
-        ("03", "Wedge", "Pick one differentiator based on what you heard."),
-        ("04", "Ask", "Worth 20 minutes to map leverage vs where workflow still breaks — write, review, or ship?"),
+    # Part 3 — lighter, whiteboard-informed, live-ready
+    section_slide(
+        prs,
+        "Part 3",
+        "Craft & curiosity — lighter slides, mostly live",
+        "Part three — craft and curiosity. This is where I’m happiest going live.",
+    )
+
+    numbered_slide(prs, "Live pitch — earn the first meeting (whiteboard craft)", [
+        ("01", "Open", "Permission, not slide-ware. “What prompted the call?” — or: writing faster → stuck before production."),
+        ("02", "Diagnose", "Time split: KTLO / refactor / innovate / moonshot. Maturity: assisted → agentic → cloud → governed factory."),
+        ("03", "Position", "Software factory: ideas in → valuable outputs out. Competitor in? Don’t trash-talk — meet them on the curve."),
+        ("04", "Ask", "20 min working session. Brush-off → binary useful email. Close: “Most important thing you saw today?”"),
     ], N17)
 
-    # 18
-    content_slide(prs, "Cutting through noise — persona-true outreach", [
-        "Hands-on developer: real-repo context + daily workflow (avoid corporate ROI theater)",
-        "VP of Engineering: shared AI layer, SDLC speed, standardizing teams (avoid feature laundry lists)",
-        "Security / Platform: Privacy Mode, admin controls, governed rollout (avoid hype)",
-        "Triggers that work: Copilot sprawl, AI policy, migrations, DevEx ownership + one sharp question",
-        "Arm reps with proof: Coinbase (agent-first) · Stripe (rollout) · PayPal (enterprise velocity)",
-        "What fails: generic “quick chat” spam and fake personalization",
+    content_slide(prs, "Cutting through noise — by persona", [
+        "Developer: real-repo context + daily workflow · peer proof · no ROI theater",
+        "VP Engineering: standardize AI coding · free KTLO capacity for moonshots · shipping outcomes",
+        "Security / Platform: governed adoption · Privacy Mode · SSO/SCIM/audit · kill shadow AI",
+        "Triggers that earn 30 seconds: Copilot sprawl · AI policy · migrations · DevEx ownership",
+        "Fail: “quick chat,” fake personalization, feature dumps, slide-ware before diagnosis",
     ], N18, size=15)
 
-    # 19
-    competitive_battlecard(prs, N19)
+    two_col(prs, "Getting attention — what works / what dies", "Works now", [
+        "Reason for the call tied to their world",
+        "Diagnose time split + bottleneck shift",
+        "Meet them on the maturity curve",
+        "Use-case-true stories (Coinbase / Stripe / PayPal · Nike / Amplitude)",
+        "Ask for a working session, not a “quick chat”",
+        "Outcomes per dollar when finance pressure shows up",
+    ], "Dies with this audience", [
+        "Generic sequences / “just checking in”",
+        "ROI theater aimed at developers",
+        "Feature laundry lists",
+        "Fake personalization",
+        "Slide-ware before you’ve earned diagnosis",
+        "Trying to out-engineer the room on a cold call",
+    ], N19, size=13)
 
-    # 20
-    two_col(prs, "Security instincts (not a certification dump)", "Privacy Mode", [
-        "Customer code is not stored or retained",
-        "Not used to train models",
-        "Requests are isolated and ephemeral",
-        "Enforce org-wide so shadow AI doesn’t win",
-    ], "Enterprise posture", [
-        "SOC 2 Type II; secure handling of code + metadata",
-        "SSO / SCIM / audit logs / admin visibility",
-        "Model, repo, and MCP governance controls",
-        "First-call frame: adoption confidence — bring partner when deep",
-    ], N20)
+    content_slide(prs, "Why we win — my read for a skeptical eng leader", [
+        "Market moved from “help me write code” → “help my org ship with agents — without losing control”",
+        "AI creates speed, then moves the bottleneck to review and production",
+        "Cursor wins as the governed software factory: workflow · context · neutrality · SDLC execution",
+        "One-liner: we don’t win by claiming the permanently smarter model — we win by applying intelligence better, with the control plane to standardize it",
+    ], N20, size=16)
 
-    # 21
     content_slide(prs, "Close — up-level, don’t rebuild", [
-        "Diagnose real constraints with data + AE/SDR truth",
-        "Protect automation, ICP, and cadence already creating pipeline",
-        "Train workflow / context / execution — four wedges, clean competitive frames",
-        "Run one or two measured experiments — keep or kill on metrics",
-        "Lead as a player-coach so the floor rises with the ceiling",
+        "Diagnose qualified vs unqualified + funnel leaks with AE truth",
+        "Protect the Cursor pitch and right-person discipline already working",
+        "Train openers / objections / discovery — then raise activity",
+        "Faster loops with Growth, AEs, SEs — trains on time",
+        "Player-coach: Tell → Show → Observe → Feedback",
         "Questions — and happy to pitch one of you live right now",
     ], N21)
 
